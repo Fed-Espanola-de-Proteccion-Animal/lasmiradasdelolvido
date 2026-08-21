@@ -486,7 +486,7 @@ ul { list-style: none; }
 }
 @media (max-width: 768px) {
   .hero__scroll {
-    display: none;
+    display: none !important;
   }
 }
 .hero__scroll-arrow {
