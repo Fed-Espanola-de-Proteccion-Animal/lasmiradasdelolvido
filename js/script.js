@@ -785,16 +785,27 @@ async function initAdoption() {
   const animals = await loadAnimals();
   let available = animals.filter(a => !a.isAdopted);
 
-  // Poblar filtro de especie
+  // Poblar filtro de especie y pills rápidas
   const speciesFilter = document.getElementById('filterSpecies');
+  const pillsContainer = document.querySelector('.filter-pills');
   if (speciesFilter) {
     const species = [...new Set(available.map(a => a.species))].sort();
+    
+    // Rellenar select
     species.forEach(s => {
       const opt = document.createElement('option');
       opt.value = s;
       opt.textContent = s;
       speciesFilter.appendChild(opt);
     });
+
+    // Rellenar pills dinámicamente si existe el contenedor
+    if (pillsContainer) {
+      pillsContainer.innerHTML = `
+        <button class="filter-pill active" data-group="species" data-value="">Todos</button>
+        ${species.map(s => `<button class="filter-pill" data-group="species" data-value="${s}">${s}</button>`).join('')}
+      `;
+    }
   }
 
   function renderAnimals(list) {
@@ -842,17 +853,20 @@ async function initAdoption() {
     document.getElementById(id)?.addEventListener('change', applyFilters);
   });
 
-  // Filter pills (tipo rápido)
-  document.querySelectorAll('.filter-pill').forEach(pill => {
-    pill.addEventListener('click', () => {
-      const group = pill.dataset.group;
-      const value = pill.dataset.value;
-      document.querySelectorAll(`.filter-pill[data-group="${group}"]`).forEach(p => p.classList.remove('active'));
-      pill.classList.add('active');
-      const select = document.getElementById(`filter${group.charAt(0).toUpperCase() + group.slice(1)}`);
-      if (select) { select.value = value; applyFilters(); }
+  // Filter pills (tipo rápido, vinculadas a las pills generadas dinámicamente)
+  const bindPills = () => {
+    document.querySelectorAll('.filter-pill').forEach(pill => {
+      pill.addEventListener('click', () => {
+        const group = pill.dataset.group;
+        const value = pill.dataset.value;
+        document.querySelectorAll(`.filter-pill[data-group="${group}"]`).forEach(p => p.classList.remove('active'));
+        pill.classList.add('active');
+        const select = document.getElementById(`filter${group.charAt(0).toUpperCase() + group.slice(1)}`);
+        if (select) { select.value = value; applyFilters(); }
+      });
     });
-  });
+  };
+  bindPills();
 
   // Reset
   document.getElementById('resetFilters')?.addEventListener('click', () => {

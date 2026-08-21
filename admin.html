@@ -461,13 +461,16 @@
         <div class="form-row">
           <div class="form-group">
             <label for="animalSpecies">Especie</label>
-            <select id="animalSpecies" required>
-              <option value="Perro">Perro</option>
-              <option value="Gato">Gato</option>
-              <option value="Conejo">Conejo</option>
-              <option value="Pájaro">Pájaro</option>
-              <option value="Otro">Otro</option>
-            </select>
+            <input type="text" id="animalSpecies" list="speciesSuggestions" required placeholder="Ej. Perro, Gato, Paloma, Rata">
+            <datalist id="speciesSuggestions">
+              <option value="Perro"></option>
+              <option value="Gato"></option>
+              <option value="Conejo"></option>
+              <option value="Pájaro"></option>
+              <option value="Hurón"></option>
+              <option value="Paloma"></option>
+              <option value="Rata"></option>
+            </datalist>
           </div>
           <div class="form-group">
             <label for="animalBreed">Raza</label>
