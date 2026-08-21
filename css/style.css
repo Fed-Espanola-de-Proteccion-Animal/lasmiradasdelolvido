@@ -484,6 +484,11 @@ ul { list-style: none; }
   letter-spacing: 0.1em;
   animation: bounce 2s ease-in-out infinite;
 }
+@media (max-width: 768px) {
+  .hero__scroll {
+    display: none;
+  }
+}
 .hero__scroll-arrow {
   width: 2px;
   height: 32px;
