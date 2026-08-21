@@ -369,6 +369,71 @@
               </div>
             </details>
 
+            <!-- Grupo 4: Cómo Ayudar (Colaboraciones) -->
+            <details class="guide-accordion">
+              <summary>Sección Cómo Ayudar</summary>
+              <div class="accordion-content">
+                
+                <!-- Donación Económica -->
+                <div style="border-bottom: 1px solid var(--border-light); padding-bottom: var(--space-4); margin-bottom: var(--space-4);">
+                  <h4 style="margin-top: 0; margin-bottom: var(--space-3); color: var(--primary-dark); font-family: var(--font-display);">Donación Económica</h4>
+                  <div class="form-group">
+                    <label for="helpDonationTitle">Título de Donaciones</label>
+                    <input type="text" id="helpDonationTitle" placeholder="Ej. Donación Económica">
+                  </div>
+                  <div class="form-group">
+                    <label for="helpDonationDesc">Descripción</label>
+                    <textarea id="helpDonationDesc" rows="2" placeholder="Ej. Financia gastos médicos, vacunas, tratamientos..." style="width: 100%; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: var(--space-2); font-family: inherit; font-size: 0.95rem; resize: vertical; outline: none;"></textarea>
+                  </div>
+                </div>
+
+                <!-- Donación de Materiales -->
+                <div style="border-bottom: 1px solid var(--border-light); padding-bottom: var(--space-4); margin-bottom: var(--space-4);">
+                  <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--space-3);">
+                    <h4 style="margin: 0; color: var(--primary-dark); font-family: var(--font-display);">Donación de Materiales</h4>
+                    <label style="display: flex; align-items: center; gap: var(--space-2); cursor: pointer; font-size: 0.9rem; font-weight: 600;">
+                      <input type="checkbox" id="helpShowMaterials" style="width: auto; margin:0; cursor: pointer;"> Mostrar
+                    </label>
+                  </div>
+                  <div class="form-group">
+                    <label for="helpMaterialsTitle">Título de Materiales</label>
+                    <input type="text" id="helpMaterialsTitle" placeholder="Ej. Donación de Materiales">
+                  </div>
+                  <div class="form-group">
+                    <label for="helpMaterialsDesc">Descripción</label>
+                    <textarea id="helpMaterialsDesc" rows="2" placeholder="Ej. Necesitamos mantas, comida, transportines..." style="width: 100%; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: var(--space-2); font-family: inherit; font-size: 0.95rem; resize: vertical; outline: none;"></textarea>
+                  </div>
+                  <div class="form-group">
+                    <label for="helpMaterialsItems">Suministros Necesarios (separados por comas)</label>
+                    <input type="text" id="helpMaterialsItems" placeholder="Ej. Mantas, Comida húmeda, Arena de gato">
+                  </div>
+                </div>
+
+                <!-- Voluntariado -->
+                <div>
+                  <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--space-3);">
+                    <h4 style="margin: 0; color: var(--primary-dark); font-family: var(--font-display);">Hazte Voluntario</h4>
+                    <label style="display: flex; align-items: center; gap: var(--space-2); cursor: pointer; font-size: 0.9rem; font-weight: 600;">
+                      <input type="checkbox" id="helpShowVolunteer" style="width: auto; margin:0; cursor: pointer;"> Mostrar
+                    </label>
+                  </div>
+                  <div class="form-group">
+                    <label for="helpVolunteerTitle">Título de Voluntariado</label>
+                    <input type="text" id="helpVolunteerTitle" placeholder="Ej. Hazte Voluntario">
+                  </div>
+                  <div class="form-group">
+                    <label for="helpVolunteerDesc">Descripción</label>
+                    <textarea id="helpVolunteerDesc" rows="2" placeholder="Ej. Ofrece tu tiempo paseando perros, socializando gatos..." style="width: 100%; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: var(--space-2); font-family: inherit; font-size: 0.95rem; resize: vertical; outline: none;"></textarea>
+                  </div>
+                  <div class="form-group">
+                    <label for="helpVolunteerTasks">Tareas (separadas por comas)</label>
+                    <input type="text" id="helpVolunteerTasks" placeholder="Ej. Paseo de perros, Socialización, Apoyo en eventos">
+                  </div>
+                </div>
+
+              </div>
+            </details>
+
             <button type="submit" class="btn btn--primary btn--lg" style="width: 100%; justify-content: center; margin-top: var(--space-6);" id="btnSaveConfig">
               Guardar Configuración en GitHub
             </button>

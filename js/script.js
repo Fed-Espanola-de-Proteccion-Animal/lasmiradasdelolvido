@@ -577,6 +577,12 @@ function initHelpSection() {
   if (!CONFIG?.helpPage) return;
   const help = CONFIG.helpPage;
 
+  // 1. Donación Económica
+  const donationTitle = document.getElementById('donationTitle');
+  const donationDesc = document.getElementById('donationDesc');
+  if (donationTitle && help.donation?.title) donationTitle.textContent = help.donation.title;
+  if (donationDesc && help.donation?.description) donationDesc.textContent = help.donation.description;
+
   const donationMethods = document.getElementById('donationMethods');
   if (donationMethods && help.donation?.methods) {
     // Excluye PayPal del listado
@@ -591,24 +597,66 @@ function initHelpSection() {
     `).join('');
   }
 
-  const materialsList = document.getElementById('materialsList');
-  if (materialsList && help.materials?.items) {
-    materialsList.innerHTML = `<ul class="help-card__list">${
-      help.materials.items.map(item => `<li>${item}</li>`).join('')
-    }</ul>`;
+  // 2. Materiales
+  const materialsCard = document.getElementById('materiales');
+  const materialsTitle = document.getElementById('materialsTitle');
+  const materialsDesc = document.getElementById('materialsDesc');
+  const showMaterials = help.materials?.show !== false;
+
+  if (materialsCard) {
+    if (showMaterials) {
+      materialsCard.style.display = 'block';
+      if (materialsTitle && help.materials?.title) materialsTitle.textContent = help.materials.title;
+      if (materialsDesc && help.materials?.description) materialsDesc.textContent = help.materials.description;
+      
+      const materialsList = document.getElementById('materialsList');
+      if (materialsList && help.materials?.items) {
+        materialsList.innerHTML = `<ul class="help-card__list">${
+          help.materials.items.map(item => `<li>${item}</li>`).join('')
+        }</ul>`;
+      }
+    } else {
+      materialsCard.style.display = 'none';
+    }
   }
 
-  const volunteerTasks = document.getElementById('volunteerTasks');
-  if (volunteerTasks && help.volunteer?.tasks) {
-    volunteerTasks.innerHTML = `<ul class="help-card__list">${
-      help.volunteer.tasks.map(t => `<li>${t}</li>`).join('')
-    }</ul>`;
+  // 3. Voluntariado
+  const volunteerCard = document.getElementById('voluntariado');
+  const volunteerTitle = document.getElementById('volunteerTitle');
+  const volunteerDesc = document.getElementById('volunteerDesc');
+  const showVolunteer = help.volunteer?.show !== false;
+
+  if (volunteerCard) {
+    if (showVolunteer) {
+      volunteerCard.style.display = 'block';
+      if (volunteerTitle && help.volunteer?.title) volunteerTitle.textContent = help.volunteer.title;
+      if (volunteerDesc && help.volunteer?.description) volunteerDesc.textContent = help.volunteer.description;
+
+      const volunteerTasks = document.getElementById('volunteerTasks');
+      if (volunteerTasks && help.volunteer?.tasks) {
+        volunteerTasks.innerHTML = `<ul class="help-card__list">${
+          help.volunteer.tasks.map(t => `<li>${t}</li>`).join('')
+        }</ul>`;
+      }
+
+      const email = CONFIG.contactInfo?.email || '';
+      document.querySelectorAll('[data-volunteer-contact]').forEach(el => {
+        el.innerHTML = `${help.volunteer?.contactPrompt || '¿Te interesa? Escríbenos a:'} <a href="mailto:${email}" class="btn btn--sm btn--secondary">${email}</a>`;
+      });
+    } else {
+      volunteerCard.style.display = 'none';
+    }
   }
 
-  const email = CONFIG.contactInfo?.email || '';
-  document.querySelectorAll('[data-volunteer-contact]').forEach(el => {
-    el.innerHTML = `${help.volunteer?.contactPrompt || '¿Te interesa? Escríbenos a:'} <a href="mailto:${email}" class="btn btn--sm btn--secondary">${email}</a>`;
-  });
+  // Ocultar el contenedor de dos columnas si ambos están inactivos
+  const twoCols = document.querySelector('.help-two-cols');
+  if (twoCols) {
+    if (!showMaterials && !showVolunteer) {
+      twoCols.style.display = 'none';
+    } else {
+      twoCols.style.display = 'grid';
+    }
+  }
 }
 
 /** Rellena la sección de Contacto */

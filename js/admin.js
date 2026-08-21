@@ -339,6 +339,32 @@ function populateSettingsForm() {
   setupColor(pickerDarkBg, textDarkBg, t.darkBg, '#1A1A2E');
   setupColor(pickerLightBg, textLightBg, t.lightBg, '#FFFBF7');
   setupColor(pickerCardBg, textCardBg, t.cardBg, '#FFFFFF');
+
+  // Rellenar sección Cómo Ayudar
+  const help = CONFIG_DATA.helpPage || {};
+  const helpDonationTitle = document.getElementById('helpDonationTitle');
+  const helpDonationDesc = document.getElementById('helpDonationDesc');
+  const helpShowMaterials = document.getElementById('helpShowMaterials');
+  const helpMaterialsTitle = document.getElementById('helpMaterialsTitle');
+  const helpMaterialsDesc = document.getElementById('helpMaterialsDesc');
+  const helpMaterialsItems = document.getElementById('helpMaterialsItems');
+  const helpShowVolunteer = document.getElementById('helpShowVolunteer');
+  const helpVolunteerTitle = document.getElementById('helpVolunteerTitle');
+  const helpVolunteerDesc = document.getElementById('helpVolunteerDesc');
+  const helpVolunteerTasks = document.getElementById('helpVolunteerTasks');
+
+  if (helpDonationTitle) helpDonationTitle.value = help.donation?.title || '';
+  if (helpDonationDesc) helpDonationDesc.value = help.donation?.description || '';
+
+  if (helpShowMaterials) helpShowMaterials.checked = help.materials?.show !== false;
+  if (helpMaterialsTitle) helpMaterialsTitle.value = help.materials?.title || '';
+  if (helpMaterialsDesc) helpMaterialsDesc.value = help.materials?.description || '';
+  if (helpMaterialsItems) helpMaterialsItems.value = help.materials?.items?.join(', ') || '';
+
+  if (helpShowVolunteer) helpShowVolunteer.checked = help.volunteer?.show !== false;
+  if (helpVolunteerTitle) helpVolunteerTitle.value = help.volunteer?.title || '';
+  if (helpVolunteerDesc) helpVolunteerDesc.value = help.volunteer?.description || '';
+  if (helpVolunteerTasks) helpVolunteerTasks.value = help.volunteer?.tasks?.join(', ') || '';
 }
 
 async function handleConfigSubmit(e) {
@@ -391,6 +417,27 @@ async function handleConfigSubmit(e) {
     lightBg: lightBg,
     cardBg: cardBg
   };
+
+  // Guardar configuración del Cómo Ayudar
+  if (!CONFIG_DATA.helpPage) CONFIG_DATA.helpPage = {};
+  if (!CONFIG_DATA.helpPage.donation) CONFIG_DATA.helpPage.donation = {};
+  if (!CONFIG_DATA.helpPage.materials) CONFIG_DATA.helpPage.materials = {};
+  if (!CONFIG_DATA.helpPage.volunteer) CONFIG_DATA.helpPage.volunteer = {};
+
+  CONFIG_DATA.helpPage.donation.title = document.getElementById('helpDonationTitle')?.value || '';
+  CONFIG_DATA.helpPage.donation.description = document.getElementById('helpDonationDesc')?.value || '';
+
+  CONFIG_DATA.helpPage.materials.show = document.getElementById('helpShowMaterials')?.checked === true;
+  CONFIG_DATA.helpPage.materials.title = document.getElementById('helpMaterialsTitle')?.value || '';
+  CONFIG_DATA.helpPage.materials.description = document.getElementById('helpMaterialsDesc')?.value || '';
+  const matItemsVal = document.getElementById('helpMaterialsItems')?.value || '';
+  CONFIG_DATA.helpPage.materials.items = matItemsVal.split(',').map(x => x.trim()).filter(x => x.length > 0);
+
+  CONFIG_DATA.helpPage.volunteer.show = document.getElementById('helpShowVolunteer')?.checked === true;
+  CONFIG_DATA.helpPage.volunteer.title = document.getElementById('helpVolunteerTitle')?.value || '';
+  CONFIG_DATA.helpPage.volunteer.description = document.getElementById('helpVolunteerDesc')?.value || '';
+  const volTasksVal = document.getElementById('helpVolunteerTasks')?.value || '';
+  CONFIG_DATA.helpPage.volunteer.tasks = volTasksVal.split(',').map(x => x.trim()).filter(x => x.length > 0);
 
   showLoading('Guardando configuración en GitHub...');
 
