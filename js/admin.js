@@ -365,6 +365,28 @@ function populateSettingsForm() {
   if (helpVolunteerTitle) helpVolunteerTitle.value = help.volunteer?.title || '';
   if (helpVolunteerDesc) helpVolunteerDesc.value = help.volunteer?.description || '';
   if (helpVolunteerTasks) helpVolunteerTasks.value = help.volunteer?.tasks?.join(', ') || '';
+
+  // Rellenar sección Textos de Portada
+  const txt = CONFIG_DATA.homepageText || {};
+  const homeHeroTag = document.getElementById('homeHeroTag');
+  const homeHeroTitle = document.getElementById('homeHeroTitle');
+  const homeHeroDesc = document.getElementById('homeHeroDesc');
+  const homeFeaturedTitle = document.getElementById('homeFeaturedTitle');
+  const homeFeaturedDesc = document.getElementById('homeFeaturedDesc');
+  const homeSocialTitle = document.getElementById('homeSocialTitle');
+  const homeSocialDesc = document.getElementById('homeSocialDesc');
+  const homeContactTitle = document.getElementById('homeContactTitle');
+  const homeContactDesc = document.getElementById('homeContactDesc');
+
+  if (homeHeroTag) homeHeroTag.value = txt.heroTag || '';
+  if (homeHeroTitle) homeHeroTitle.value = txt.heroTitle || '';
+  if (homeHeroDesc) homeHeroDesc.value = txt.heroDescription || '';
+  if (homeFeaturedTitle) homeFeaturedTitle.value = txt.featuredTitle || '';
+  if (homeFeaturedDesc) homeFeaturedDesc.value = txt.featuredDescription || '';
+  if (homeSocialTitle) homeSocialTitle.value = txt.socialTitle || '';
+  if (homeSocialDesc) homeSocialDesc.value = txt.socialDescription || '';
+  if (homeContactTitle) homeContactTitle.value = txt.contactTitle || '';
+  if (homeContactDesc) homeContactDesc.value = txt.contactDescription || '';
 }
 
 async function handleConfigSubmit(e) {
@@ -417,6 +439,18 @@ async function handleConfigSubmit(e) {
     lightBg: lightBg,
     cardBg: cardBg
   };
+
+  // Guardar textos de portada
+  if (!CONFIG_DATA.homepageText) CONFIG_DATA.homepageText = {};
+  CONFIG_DATA.homepageText.heroTag = document.getElementById('homeHeroTag')?.value || '';
+  CONFIG_DATA.homepageText.heroTitle = document.getElementById('homeHeroTitle')?.value || '';
+  CONFIG_DATA.homepageText.heroDescription = document.getElementById('homeHeroDesc')?.value || '';
+  CONFIG_DATA.homepageText.featuredTitle = document.getElementById('homeFeaturedTitle')?.value || '';
+  CONFIG_DATA.homepageText.featuredDescription = document.getElementById('homeFeaturedDesc')?.value || '';
+  CONFIG_DATA.homepageText.socialTitle = document.getElementById('homeSocialTitle')?.value || '';
+  CONFIG_DATA.homepageText.socialDescription = document.getElementById('homeSocialDesc')?.value || '';
+  CONFIG_DATA.homepageText.contactTitle = document.getElementById('homeContactTitle')?.value || '';
+  CONFIG_DATA.homepageText.contactDescription = document.getElementById('homeContactDesc')?.value || '';
 
   // Guardar configuración del Cómo Ayudar
   if (!CONFIG_DATA.helpPage) CONFIG_DATA.helpPage = {};

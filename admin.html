@@ -434,6 +434,72 @@
               </div>
             </details>
 
+            <!-- Grupo 5: Textos de la Portada -->
+            <details class="guide-accordion">
+              <summary>Textos de la Portada</summary>
+              <div class="accordion-content">
+                
+                <!-- Sección Héroe (Inicio) -->
+                <div style="border-bottom: 1px solid var(--border-light); padding-bottom: var(--space-4); margin-bottom: var(--space-4);">
+                  <h4 style="margin-top: 0; margin-bottom: var(--space-3); color: var(--primary-dark); font-family: var(--font-display);">Banner Principal (Inicio)</h4>
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label for="homeHeroTag">Etiqueta Superior</label>
+                      <input type="text" id="homeHeroTag" placeholder="Ej. Bienvenidos al refugio">
+                    </div>
+                    <div class="form-group">
+                      <label for="homeHeroTitle">Título Principal (H1)</label>
+                      <input type="text" id="homeHeroTitle" placeholder="Ej. Cada animal merece una segunda oportunidad">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="homeHeroDesc">Descripción Principal</label>
+                    <textarea id="homeHeroDesc" rows="2" placeholder="Ej. Rescatamos, rehabilitamos y encontramos hogares..." style="width: 100%; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: var(--space-2); font-family: inherit; font-size: 0.95rem; resize: vertical; outline: none;"></textarea>
+                  </div>
+                </div>
+
+                <!-- Animales Destacados -->
+                <div style="border-bottom: 1px solid var(--border-light); padding-bottom: var(--space-4); margin-bottom: var(--space-4);">
+                  <h4 style="margin-top: 0; margin-bottom: var(--space-3); color: var(--primary-dark); font-family: var(--font-display);">Sección Animales Destacados</h4>
+                  <div class="form-group">
+                    <label for="homeFeaturedTitle">Título de Sección</label>
+                    <input type="text" id="homeFeaturedTitle" placeholder="Ej. Buscan un hogar">
+                  </div>
+                  <div class="form-group">
+                    <label for="homeFeaturedDesc">Descripción de Sección</label>
+                    <textarea id="homeFeaturedDesc" rows="2" placeholder="Ej. Conoce a algunos de nuestros amigos peludos..." style="width: 100%; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: var(--space-2); font-family: inherit; font-size: 0.95rem; resize: vertical; outline: none;"></textarea>
+                  </div>
+                </div>
+
+                <!-- Redes Sociales -->
+                <div style="border-bottom: 1px solid var(--border-light); padding-bottom: var(--space-4); margin-bottom: var(--space-4);">
+                  <h4 style="margin-top: 0; margin-bottom: var(--space-3); color: var(--primary-dark); font-family: var(--font-display);">Sección Redes Sociales</h4>
+                  <div class="form-group">
+                    <label for="homeSocialTitle">Título de Sección</label>
+                    <input type="text" id="homeSocialTitle" placeholder="Ej. Síguenos en Redes Sociales">
+                  </div>
+                  <div class="form-group">
+                    <label for="homeSocialDesc">Descripción de Sección</label>
+                    <textarea id="homeSocialDesc" rows="2" placeholder="Ej. Compartimos casos urgentes, historias de adopción..." style="width: 100%; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: var(--space-2); font-family: inherit; font-size: 0.95rem; resize: vertical; outline: none;"></textarea>
+                  </div>
+                </div>
+
+                <!-- Contacto -->
+                <div>
+                  <h4 style="margin-top: 0; margin-bottom: var(--space-3); color: var(--primary-dark); font-family: var(--font-display);">Sección de Contacto</h4>
+                  <div class="form-group">
+                    <label for="homeContactTitle">Título de Sección</label>
+                    <input type="text" id="homeContactTitle" placeholder="Ej. Ponte en contacto">
+                  </div>
+                  <div class="form-group">
+                    <label for="homeContactDesc">Descripción de Sección</label>
+                    <textarea id="homeContactDesc" rows="2" placeholder="Ej. ¿Tienes dudas sobre el proceso de adopción o quieres programar..." style="width: 100%; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: var(--space-2); font-family: inherit; font-size: 0.95rem; resize: vertical; outline: none;"></textarea>
+                  </div>
+                </div>
+
+              </div>
+            </details>
+
             <button type="submit" class="btn btn--primary btn--lg" style="width: 100%; justify-content: center; margin-top: var(--space-6);" id="btnSaveConfig">
               Guardar Configuración en GitHub
             </button>

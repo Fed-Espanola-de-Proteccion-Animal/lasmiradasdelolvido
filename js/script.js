@@ -725,6 +725,29 @@ async function initHome() {
       </section>
     `;
   }
+
+  // Textos editables de la página principal
+  const homeTxt = CONFIG.homepageText || {};
+  const heroTag = document.getElementById('heroTag');
+  const heroTitle = document.getElementById('heroTitle');
+  const heroDesc = document.getElementById('heroDesc');
+  const featuredTitle = document.getElementById('featuredTitle');
+  const featuredDesc = document.getElementById('featuredDesc');
+  const socialTitle = document.getElementById('socialTitle');
+  const socialDesc = document.getElementById('socialDesc');
+  const contactTitle = document.getElementById('contactTitle');
+  const contactDesc = document.getElementById('contactDesc');
+
+  if (heroTag && homeTxt.heroTag) heroTag.textContent = homeTxt.heroTag;
+  if (heroTitle && homeTxt.heroTitle) heroTitle.innerHTML = homeTxt.heroTitle;
+  if (heroDesc && homeTxt.heroDescription) heroDesc.textContent = homeTxt.heroDescription;
+  if (featuredTitle && homeTxt.featuredTitle) featuredTitle.textContent = homeTxt.featuredTitle;
+  if (featuredDesc && homeTxt.featuredDescription) featuredDesc.textContent = homeTxt.featuredDescription;
+  if (socialTitle && homeTxt.socialTitle) socialTitle.textContent = homeTxt.socialTitle;
+  if (socialDesc && homeTxt.socialDescription) socialDesc.textContent = homeTxt.socialDescription;
+  if (contactTitle && homeTxt.contactTitle) contactTitle.textContent = homeTxt.contactTitle;
+  if (contactDesc && homeTxt.contactDescription) contactDesc.textContent = homeTxt.contactDescription;
+
   // Estadísticas
   const statsGrid = document.getElementById('statsGrid');
   if (statsGrid && CONFIG?.stats) {

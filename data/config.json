@@ -5,6 +5,18 @@
   "footerText": "Rescatando y rehabilitando animales en situación de abandono.",
   "logoEmoji": "",
 
+  "homepageText": {
+    "heroTag": "Bienvenidos al refugio",
+    "heroTitle": "Cada animal merece<br><em>una segunda oportunidad</em>",
+    "heroDescription": "Rescatamos, rehabilitamos y encontramos hogares para animales abandonados. Adopta un compañero o colabora para cambiar su destino.",
+    "featuredTitle": "Buscan un hogar",
+    "featuredDescription": "Conoce a algunos de nuestros amigos peludos. Cada uno tiene una gran historia y mucho amor por entregar.",
+    "socialTitle": "Síguenos en Redes Sociales",
+    "socialDescription": "Compartimos casos urgentes, historias de adopción y el día a día en el refugio.",
+    "contactTitle": "Ponte en contacto",
+    "contactDescription": "¿Tienes dudas sobre el proceso de adopción o quieres programar una visita? Escríbenos."
+  },
+
   "socialLinks": [
     {
       "name": "Instagram",
