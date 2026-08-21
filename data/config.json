@@ -18,21 +18,21 @@
     },
     {
       "name": "WhatsApp",
-      "url": "https://wa.me/34123456789",
+      "url": "https://wa.me/34600000000",
       "icon": "whatsapp"
     }
   ],
 
   "contactInfo": {
-    "email": "info@turefugio.com",
-    "phone": "+34 123 45 67 89",
-    "address": "Calle del Refugio, 10, 28001 Madrid, España",
+    "email": "contacto@ejemplo.com",
+    "phone": "+34 600 000 000",
+    "address": "Calle de Ejemplo, 123, 28000 Madrid, España",
     "hours": "Lunes–Viernes: 09:00–18:00 | Sábados: 10:00–14:00 | Domingos: Cerrado"
   },
 
   "mapEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3037.234543!2d-3.703!3d40.416!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjDCsDI0JzU3LjYiTiAzwrA0MicxMC44Ilc!5e0!3m2!1ses!2ses!4v1234567890",
 
-  "donationUrl": "https://www.paypal.com/paypalme/turefugio",
+  "donationUrl": "https://www.paypal.com/paypalme/ejemplo",
 
   "stats": [
     { "value": 342, "label": "Animales rescatados", "icon": "🐾" },
@@ -121,9 +121,9 @@
       "title": "Dona",
       "description": "Cada euro que donas va directamente al cuidado veterinario, alimentación y bienestar de nuestros animales.",
       "methods": [
-        { "name": "PayPal", "info": "Donación online rápida y segura", "link": "https://www.paypal.com/paypalme/turefugio", "emoji": "" },
-        { "name": "Bizum", "info": "Envía al número: 600 123 456\nConcepto: Donación Refugio", "link": null, "emoji": "" },
-        { "name": "Transferencia", "info": "Banco: Tu Banco\nIBAN: ES12 3456 7890 1234 5678 9012", "link": null, "emoji": "" }
+        { "name": "PayPal", "info": "Donación online rápida y segura", "link": "https://www.paypal.com/paypalme/ejemplo", "emoji": "" },
+        { "name": "Bizum", "info": "Envía al número: 600 000 000\nConcepto: Donación", "link": null, "emoji": "" },
+        { "name": "Transferencia", "info": "Banco: Banco de Ejemplo\nIBAN: ES00 0000 0000 0000 0000 0000", "link": null, "emoji": "" }
       ]
     },
     "materials": {
