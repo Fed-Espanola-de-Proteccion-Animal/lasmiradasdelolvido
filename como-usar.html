@@ -79,6 +79,86 @@
       </div>
     </section>
 
+    <!-- ══════════════ GUÍA DETALLADA PASO A PASO ══════════════ -->
+    <section class="section" style="border-top: 1px solid var(--border-light);">
+      <div class="container" style="max-width: 800px;">
+        
+        <div class="section-header">
+          <h2 style="font-size: 1.8rem; margin-bottom: var(--space-4);">Guía Completa Paso a Paso (Para no-programadores)</h2>
+          <p>¿Es tu primera vez con GitHub o no tienes experiencia técnica? Sigue este tutorial interactivo detallado para hacerlo todo directamente desde tu navegador.</p>
+        </div>
+
+        <div style="margin-top: var(--space-6); display: flex; flex-direction: column; gap: var(--space-3);">
+
+          <!-- Paso 1 -->
+          <details class="guide-accordion">
+            <summary>Paso 1: Crear cuenta en GitHub y copiar la plantilla</summary>
+            <div class="accordion-content" style="padding: var(--space-4); line-height: 1.6; color: var(--text-secondary);">
+              <ol style="margin-left: var(--space-5); display: flex; flex-direction: column; gap: var(--space-2);">
+                <li>Ve a <a href="https://github.com" target="_blank" style="color: var(--primary); font-weight: 600;">GitHub.com</a> y haz clic en <strong>Sign Up</strong> para registrarte (solo necesitas un email y una contraseña).</li>
+                <li>Una vez iniciada tu sesión, ve al repositorio original de esta plantilla: <a href="https://github.com/guillecs/refugio-animales-plantilla" target="_blank" style="color: var(--primary); font-weight: 600;">repositorio de la plantilla</a>.</li>
+                <li>Haz clic en el botón <strong>Fork</strong> en la esquina superior derecha de la página.</li>
+                <li>En la pantalla que se abre, deja las opciones por defecto y haz clic en el botón verde abajo del todo: <strong>Create fork</strong>. Esto creará una copia exacta de la web en tu cuenta de GitHub.</li>
+              </ol>
+            </div>
+          </details>
+
+          <!-- Paso 2 -->
+          <details class="guide-accordion">
+            <summary>Paso 2: Activar tu página web (Alojamiento gratuito permanente)</summary>
+            <div class="accordion-content" style="padding: var(--space-4); line-height: 1.6; color: var(--text-secondary);">
+              <ol style="margin-left: var(--space-5); display: flex; flex-direction: column; gap: var(--space-2);">
+                <li>En la página de tu copia del repositorio, busca el menú horizontal de pestañas arriba del todo y haz clic en <strong>Settings</strong> (Configuración), que tiene un icono de engranaje.</li>
+                <li>En la barra lateral izquierda, busca la sección de "Code and automation" y haz clic en <strong>Pages</strong>.</li>
+                <li>En el centro de la pantalla, en la sección <em>Build and deployment</em>, busca el desplegable de **Branch** (Rama) que actualmente indica <code>None</code>.</li>
+                <li>Haz clic en el desplegable y cámbialo a **<code>main</code>**. Deja la carpeta secundaria en <code>/ (root)</code> y haz clic en el botón <strong>Save</strong> (Guardar).</li>
+                <li>Espera 1 o 2 minutos y recarga la página. En la parte superior de esa misma sección de Pages, aparecerá un recuadro verde con la URL pública de tu web (ej. <code>https://tu-usuario.github.io/refugio-animales-plantilla/</code>). ¡Guarda esa URL!</li>
+              </ol>
+            </div>
+          </details>
+
+          <!-- Paso 3 -->
+          <details class="guide-accordion">
+            <summary>Paso 3: Crear tu llave de acceso segura (GitHub Token)</summary>
+            <div class="accordion-content" style="padding: var(--space-4); line-height: 1.6; color: var(--text-secondary);">
+              <p style="margin-bottom: var(--space-3);">
+                Para que el panel de administración de tu web pueda guardar tus animales y editar los colores de forma directa, necesita un permiso seguro de escritura en tu cuenta.
+              </p>
+              <ol style="margin-left: var(--space-5); display: flex; flex-direction: column; gap: var(--space-2);">
+                <li>Haz clic en este enlace directo: <a href="https://github.com/settings/tokens/new?description=Web%20Refugio%20CMS&scopes=public_repo" target="_blank" style="color: var(--primary); font-weight: 600;">Generar Token de GitHub</a>. Te llevará directo al formulario adecuado.</li>
+                <li>En el campo <strong>Note</strong>, escribe algo que identifique el permiso (ej. <code>Web Refugio Mascotas</code>).</li>
+                <li>En el desplegable <strong>Expiration</strong>, selecciona la opción <strong>No expiration</strong> (Sin expiración) para que tu panel no caduque nunca.</li>
+                <li>En los permisos inferiores, asegúrate de que la casilla <strong><code>public_repo</code></strong> esté marcada con un check.</li>
+                <li>Baja al final de la página y haz clic en el botón verde <strong>Generate token</strong>.</li>
+                <li><strong>⚠️ MUY IMPORTANTE:</strong> GitHub te mostrará una clave verde que empieza por <code>ghp_...</code>. <strong>Cópiala completa y guárdala</strong> en tus notas o en tu móvil. Si recargas esa página, no podrás volver a verla.</li>
+              </ol>
+            </div>
+          </details>
+
+          <!-- Paso 4 -->
+          <details class="guide-accordion">
+            <summary>Paso 4: Iniciar sesión en el panel y gestionar tu web</summary>
+            <div class="accordion-content" style="padding: var(--space-4); line-height: 1.6; color: var(--text-secondary);">
+              <ol style="margin-left: var(--space-5); display: flex; flex-direction: column; gap: var(--space-2);">
+                <li>Abre la dirección de tu web obtenida en el Paso 2 y escribe **<code>/admin.html</code>** al final de la barra de dirección.</li>
+                <li>Haz clic en el banner superior que dice **"Conectar mi Repositorio"**.</li>
+                <li>Introduce tus datos:
+                  <ul>
+                    <li><strong>Repositorio:</strong> Tu nombre de usuario y el nombre de la copia (ej: <code>miusuario/refugio-animales-plantilla</code>).</li>
+                    <li><strong>Token:</strong> Pega la clave <code>ghp_...</code> que guardaste en el Paso 3.</li>
+                  </ul>
+                </li>
+                <li>Haz clic en <strong>Conectar y Guardar</strong>.</li>
+                <li>¡Felicidades! Tu panel de control ya está conectado en Modo Escritura. Ahora puedes añadir animales, subir fotos e interactuar con los colores del tema. Todo se sincronizará automáticamente en unos instantes.</li>
+              </ol>
+            </div>
+          </details>
+
+        </div>
+
+      </div>
+    </section>
+
     <!-- ══════════════ PREGUNTAS FRECUENTES ══════════════ -->
     <section class="section section--muted">
       <div class="container" style="max-width: 800px;">
