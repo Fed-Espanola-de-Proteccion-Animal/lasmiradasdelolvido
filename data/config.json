@@ -1,179 +1,168 @@
+{
+  "isTemplate": true,
+  "siteTitle": "Refugio Amigo Animal",
+  "siteTagline": "Cada animal merece una segunda oportunidad",
+  "footerText": "Rescatando y rehabilitando animales en situación de abandono.",
+  "logoEmoji": "",
+
+  "socialLinks": [
     {
-      "siteTitle": "Refugio Amigo Animal",
-      "footerText": "© 2025 Refugio Amigo Animal. Todos los derechos reservados.",
-      "socialLinks": [
-        {
-          "name": "Instagram",
-          "url": "https://instagram.com/tu_usuario",
-          "iconClass": "fab fa-instagram"
-        },
-        {
-          "name": "BlueSky",
-          "url": "https://bsky.app/profile/tu_usuario.bsky.social",
-          "iconClass": "fab fa-bluesky"
-        }
-      ],
-      "contactInfo": {
-        "email": "info@tudominio.com",
-        "telefono": "+34 123 45 67 89",
-        "direccion": "Calle Falsa 123, Ciudad, País"
-      },
-      "aboutPage": {
-        "title": "Nuestra Misión y Equipo",
-        "missionParagraphs": [
-          "En Refugio Amigo Animal, nos dedicamos con pasión a la causa de los animales desamparados. Creemos firmemente que cada ser vivo merece una segunda oportunidad, un hogar lleno de amor y el respeto que se merece.",
-          "Desde 20XX, hemos rescatado, rehabilitado y encontrado familias para cientos de perros, gatos y otras mascotas. Nuestro trabajo es posible gracias a un equipo incansable de voluntarios, veterinarios y colaboradores que dedican su tiempo y energía a esta noble labor."
-        ],
-        "valuesTitle": "Nuestros Valores",
-        "values": [
-          "<strong>Compasión:</strong> Actuamos siempre con empatía y amor hacia cada animal.",
-          "<strong>Respeto:</strong> Valoramos la vida y el bienestar de todos los seres vivos.",
-          "<strong>Integridad:</strong> Operamos con transparencia y responsabilidad en todas nuestras acciones.",
-          "<strong>Comunidad:</strong> Fomentamos la participación y el apoyo de la comunidad en la adopción y cuidado animal."
-        ],
-        "teamTitle": "Conoce a Nuestro Equipo",
-        "teamMembers": [
-          {
-            "name": "Nombre Voluntario 1",
-            "role": "Fundador y Coordinador de Adopciones.",
-            "description": "Dedicado a asegurar que cada animal encuentre el hogar perfecto.",
-            "image": "https://placehold.co/150x150/007bff/ffffff?text=Voluntario+1"
-          },
-          {
-            "name": "Nombre Voluntario 2",
-            "role": "Encargada de Bienestar Animal y Rehabilitación.",
-            "description": "Su pasión es transformar vidas.",
-            "image": "https://placehold.co/150x150/007bff/ffffff?text=Voluntario+2"
-          },
-          {
-            "name": "Nombre Voluntario 3",
-            "role": "Responsable de Eventos y Recaudación de Fondos.",
-            "description": "El motor detrás de nuestras iniciativas.",
-            "image": "https://placehold.co/150x150/007bff/ffffff?text=Voluntario+3"
-          }
-        ],
-        "callToActionText": "¿Te gustaría unirte a nuestro equipo? ¡Conoce cómo puedes ",
-        "callToActionLinkText": "ayudar",
-        "callToActionLinkUrl": "como-ayudar.html"
-      },
-      "helpPage": {
-        "title": "Formas de Ayudar",
-        "description": "Tu apoyo es fundamental para que podamos seguir rescatando, rehabilitando y encontrando hogares amorosos para nuestros animales.",
-        "sections": [
-          {
-            "id": "financial",
-            "title": "Donaciones Económicas",
-            "paragraphs": [
-              "Cada contribución económica, por pequeña que sea, nos ayuda a cubrir gastos veterinarios, alimentación y mantenimiento de nuestras instalaciones."
-            ],
-            "items": [
-              {
-                "name": "PayPal",
-                "info": "Dona de forma rápida y segura a través de PayPal.",
-                "link": "https://www.paypal.com/paypalme/turefugio"
-              },
-              {
-                "name": "Bizum",
-                "info": "Envía tu donación a nuestro número Bizum: +34 123 456 789 (Concepto: Donación Animal).",
-                "link": null
-              },
-              {
-                "name": "Transferencia Bancaria",
-                "info": "Realiza una transferencia a nuestra cuenta bancaria.",
-                "bankName": "Tu Banco",
-                "iban": "ESXX XXXX XXXX XXXX XXXX XXXX",
-                "swiftBic": "TUCÓDIGO",
-                "link": null
-              }
-            ]
-          },
-          {
-            "id": "materials",
-            "title": "Donación de Materiales y Suministros",
-            "paragraphs": [
-              "Siempre necesitamos una variedad de artículos para el cuidado diario de nuestros animales. Cualquier donación de materiales es bienvenida y muy apreciada."
-            ],
-            "items": [
-              { "name": "Comida para perros y gatos" },
-              { "name": "Mantas y toallas" },
-              { "name": "Juguetes para mascotas" },
-              { "name": "Medicamentos veterinarios (consultar)" },
-              { "name": "Arena para gatos" }
-            ],
-            "infoText": "Puedes traer tus donaciones a nuestro refugio de Lunes a Viernes, de 10:00 a 14:00 y de 16:00 a 19:00."
-          },
-          {
-            "id": "volunteer",
-            "title": "Hazte Voluntario",
-            "paragraphs": [
-              "Si tienes tiempo y ganas de ayudar, ¡te necesitamos! Nuestros voluntarios son el corazón del refugio.",
-              "Hay muchas formas de colaborar: pasear perros, limpiar instalaciones, socializar gatos, ayudar en eventos y más."
-            ],
-            "items": [
-              { "name": "Paseos y socialización de animales" },
-              { "name": "Mantenimiento de instalaciones" },
-              { "name": "Apoyo en eventos de adopción" },
-              { "name": "Tareas administrativas" }
-            ],
-            "infoText": "Interesados, por favor, <a href='contacto.html'>contáctanos</a> para más información sobre cómo unirte a nuestro equipo."
-          }
-        ]
-      },
-      "contactPage": {
-        "title": "Contáctanos",
-        "description": "Estamos aquí para responder a tus preguntas y ayudarte. No dudes en ponerte en contacto con nosotros a través de los siguientes medios:",
-        "email": "contacto@tudominio.com",
-        "phone": "+34 987 654 321",
-        "address": "Calle del Refugio, 10, 28001 Madrid, España",
-        "hours": "Lunes a Viernes: 09:00 - 18:00 | Sábados: 10:00 - 14:00 | Domingos: Cerrado"
-      },
-      "defaultTheme": "Tierra Cálida",
-      "colorThemes": [
-        {
-          "name": "Default",
-          "primary": "#007bff",
-          "secondary": "#6c757d",
-          "accent": "#28a745",
-          "lightBg": "#f8f9fa",
-          "whiteBg": "#ffffff",
-          "darkText": "#343a40",
-          "lightText": "#ffffff",
-          "borderColor": "#dee2e6"
-        },
-        {
-          "name": "Tierra Cálida",
-          "primary": "#8B4513",
-          "secondary": "#A0522D",
-          "accent": "#CD853F",
-          "lightBg": "#FFF8DC",
-          "whiteBg": "#FDF5E6",
-          "darkText": "#5A2D0D",
-          "lightText": "#ffffff",
-          "borderColor": "#D2B48C"
-        },
-        {
-          "name": "Océano Vivo",
-          "primary": "#008080",
-          "secondary": "#4682B4",
-          "accent": "#FFA500",
-          "lightBg": "#E0FFFF",
-          "whiteBg": "#F0FFFF",
-          "darkText": "#004040",
-          "lightText": "#ffffff",
-          "borderColor": "#AFEEEE"
-        },
-        {
-          "name": "Alto Contraste Oscuro",
-          "primary": "#4CAF50",
-          "secondary": "#BBBBBB",
-          "accent": "#FFD700",
-          "lightBg": "#212121",
-          "whiteBg": "#303030",
-          "darkText": "#FFFFFF",
-          "lightText": "#FFFFFF",
-          "borderColor": "#424242"
-        }
-      ],
-      "appsScriptAnimalsUrl": "TU_URL_DE_APPS_SCRIPT_ANIMALES"
+      "name": "Instagram",
+      "url": "https://instagram.com/tu_usuario",
+      "icon": "instagram"
+    },
+    {
+      "name": "Facebook",
+      "url": "https://facebook.com/tu_pagina",
+      "icon": "facebook"
+    },
+    {
+      "name": "WhatsApp",
+      "url": "https://wa.me/34123456789",
+      "icon": "whatsapp"
     }
-    
+  ],
+
+  "contactInfo": {
+    "email": "info@turefugio.com",
+    "phone": "+34 123 45 67 89",
+    "address": "Calle del Refugio, 10, 28001 Madrid, España",
+    "hours": "Lunes–Viernes: 09:00–18:00 | Sábados: 10:00–14:00 | Domingos: Cerrado"
+  },
+
+  "mapEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3037.234543!2d-3.703!3d40.416!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjDCsDI0JzU3LjYiTiAzwrA0MicxMC44Ilc!5e0!3m2!1ses!2ses!4v1234567890",
+
+  "donationUrl": "https://www.paypal.com/paypalme/turefugio",
+
+  "stats": [
+    { "value": 342, "label": "Animales rescatados", "icon": "🐾" },
+    { "value": 289, "label": "Adoptados con éxito", "icon": "🏠" },
+    { "value": 47, "label": "En acogida ahora", "icon": "❤️" },
+    { "value": 85, "label": "Voluntarios activos", "icon": "🙌" }
+  ],
+
+  "events": [
+    {
+      "title": "Jornada de Adopción",
+      "date": "2025-09-14",
+      "time": "10:00–14:00",
+      "location": "Parque del Retiro, Madrid",
+      "description": "Ven a conocer a nuestros animales en persona. Habrá actividades para toda la familia.",
+      "emoji": "🐶"
+    },
+    {
+      "title": "Taller de Cuidado Responsable",
+      "date": "2025-09-28",
+      "time": "11:00–13:00",
+      "location": "Centro Cívico Vallecas",
+      "description": "Aprende a cuidar correctamente a tu mascota con la ayuda de nuestros veterinarios.",
+      "emoji": "📚"
+    },
+    {
+      "title": "Carrera Solidaria",
+      "date": "2025-10-12",
+      "time": "09:00–12:00",
+      "location": "Casa de Campo, Madrid",
+      "description": "5km junto a tu perro. Toda la recaudación va destinada al refugio.",
+      "emoji": "🏃"
+    }
+  ],
+
+  "gallery": [
+    "https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=600&q=80",
+    "https://images.unsplash.com/photo-1548681528-6a5c45b66b42?w=600&q=80",
+    "https://images.unsplash.com/photo-1574158622682-e40e69881006?w=600&q=80",
+    "https://images.unsplash.com/photo-1601758124510-52d02ddb7cbd?w=600&q=80",
+    "https://images.unsplash.com/photo-1552053831-71594a27632d?w=600&q=80",
+    "https://images.unsplash.com/photo-1571566882372-1598d88abd90?w=600&q=80"
+  ],
+
+  "aboutPage": {
+    "title": "Nuestra Misión",
+    "heroImage": "https://images.unsplash.com/photo-1450778869180-41d0601e046e?w=800&q=80",
+    "missionParagraphs": [
+      "En Refugio Amigo Animal nos dedicamos con pasión a rescatar, rehabilitar y encontrar hogares amorosos para animales en situación de abandono o maltrato.",
+      "Desde 2015, hemos dado una segunda oportunidad a más de 300 animales. Nuestro trabajo es posible gracias a un equipo de voluntarios, veterinarios y colaboradores que dedican su tiempo a esta noble causa."
+    ],
+    "valuesTitle": "Nuestros Valores",
+    "values": [
+      { "emoji": "💛", "title": "Compasión", "text": "Actuamos siempre con empatía y amor hacia cada animal que llega al refugio." },
+      { "emoji": "🌿", "title": "Respeto", "text": "Valoramos la vida y el bienestar de todos los seres vivos sin excepción." },
+      { "emoji": "🔍", "title": "Transparencia", "text": "Operamos con total honestidad y rendimos cuentas a nuestra comunidad." },
+      { "emoji": "🤝", "title": "Comunidad", "text": "Fomentamos la participación ciudadana en la adopción y cuidado animal." }
+    ],
+    "teamTitle": "Conoce al Equipo",
+    "teamMembers": [
+      {
+        "name": "María García",
+        "role": "Fundadora y Directora",
+        "description": "Veterinaria de profesión, lleva 10 años dedicada al rescate animal.",
+        "image": "https://images.unsplash.com/photo-1494790108755-2616b612b567?w=300&q=80"
+      },
+      {
+        "name": "Carlos Ruiz",
+        "role": "Coordinador de Adopciones",
+        "description": "Se asegura de que cada animal encuentre el hogar perfecto para su personalidad.",
+        "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&q=80"
+      },
+      {
+        "name": "Laura Martínez",
+        "role": "Responsable de Voluntariado",
+        "description": "Gestiona el equipo de más de 80 voluntarios con energía y dedicación.",
+        "image": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300&q=80"
+      }
+    ]
+  },
+
+  "helpPage": {
+    "title": "Cómo Puedes Ayudar",
+    "description": "Tu apoyo transforma vidas. Hay muchas formas de colaborar con el refugio, escoge la que mejor se adapte a ti.",
+    "donation": {
+      "title": "Dona",
+      "description": "Cada euro que donas va directamente al cuidado veterinario, alimentación y bienestar de nuestros animales.",
+      "methods": [
+        { "name": "PayPal", "info": "Donación online rápida y segura", "link": "https://www.paypal.com/paypalme/turefugio", "emoji": "" },
+        { "name": "Bizum", "info": "Envía al número: 600 123 456\nConcepto: Donación Refugio", "link": null, "emoji": "" },
+        { "name": "Transferencia", "info": "Banco: Tu Banco\nIBAN: ES12 3456 7890 1234 5678 9012", "link": null, "emoji": "" }
+      ]
+    },
+    "materials": {
+      "title": "Materiales",
+      "description": "Siempre necesitamos suministros para el día a día. Puedes traerlos al refugio en horario de atención.",
+      "items": ["Pienso para perros y gatos", "Mantas y toallas", "Juguetes para mascotas", "Arena para gatos", "Transportines y correas", "Medicamentos veterinarios (consultar)"]
+    },
+    "volunteer": {
+      "title": "Voluntariado",
+      "description": "Si tienes tiempo y ganas de ayudar, ¡te necesitamos! Nuestros voluntarios son el corazón del refugio.",
+      "tasks": ["Paseos y socialización de perros", "Cuidado y socialización de gatos", "Mantenimiento de instalaciones", "Apoyo en eventos de adopción", "Fotografía de animales para redes sociales", "Gestión de redes sociales y comunicación"],
+      "contactPrompt": "¿Te animas? Escríbenos a"
+    },
+    "foster": {
+      "title": "Acogida Temporal",
+      "description": "La acogida temporal es fundamental para animales que necesitan un entorno familiar antes de ser adoptados.",
+      "steps": [
+        { "step": "1", "title": "Contacta con nosotros", "text": "Cuéntanos tu situación y disponibilidad." },
+        { "step": "2", "title": "Entrevista", "text": "Una pequeña charla para encontrar el animal ideal para ti." },
+        { "step": "3", "title": "Acogida", "text": "Te proporcionamos todo lo necesario para el animal." },
+        { "step": "4", "title": "Seguimiento", "text": "Te acompañamos durante todo el proceso." }
+      ]
+    }
+  },
+
+  "contactPage": {
+    "title": "Contáctanos",
+    "description": "Estamos aquí para resolver tus dudas. No dudes en escribirnos o llamarnos.",
+    "formSubject": "Consulta desde la web del refugio"
+  },
+
+  "appsScriptAnimalsUrl": "TU_URL_DE_APPS_SCRIPT_ANIMALES",
+
+  "theme": {
+    "primaryColor": "#E8622A",
+    "secondaryColor": "#2D6A4F",
+    "accentColor": "#FFB703",
+    "darkBg": "#1A1A2E",
+    "lightBg": "#FFFBF7",
+    "cardBg": "#FFFFFF"
+  }
+}

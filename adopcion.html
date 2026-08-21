@@ -1,63 +1,107 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- El título de la página se cargará dinámicamente desde config.json -->
-    <title id="siteTitleDynamic">Cargando...</title>
-    <!-- Enlazamos nuestro archivo CSS para los estilos de la página -->
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adopción — Refugio Amigo Animal</title>
+  <meta name="description" content="Conoce a todos los animales disponibles para adopción. Filtra por especie, tamaño o edad y encuentra a tu compañero ideal.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 </head>
 <body>
 
-    <!-- Encabezado de la página: Contiene el logo y la navegación principal -->
-    <header>
-        <div class="container">
-            <div class="logo">
-                <!-- El texto del logo/título del sitio se cargará dinámicamente desde config.json -->
-                <a href="index.html" id="siteLogoDynamic">Cargando...</a>
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="index.html">Inicio</a></li>
-                    <li><a href="adopcion.html">Animales en Adopción</a></li>
-                    <li><a href="quienes-somos.html">Quiénes Somos</a></li>
-                    <li><a href="como-ayudar.html">Cómo Ayudar</a></li>
-                    <li><a href="contacto.html">Contacto</a></li>
-                </ul>
-            </nav>
+  <!-- Cabecera (Se inyecta dinámicamente desde script.js) -->
+  <header class="site-header" role="banner"></header>
+
+  <main>
+
+    <!-- ══════════════ PAGE HERO ══════════════ -->
+    <section class="page-hero" aria-labelledby="page-title">
+      <div class="container">
+        <div class="section-tag">Adopción responsable</div>
+        <h1 class="page-hero__title" id="page-title">Animales en busca de hogar</h1>
+        <p class="page-hero__sub">
+          Cada uno tiene una historia y mucho amor que dar. Usa los filtros para encontrar a tu compañero ideal.
+        </p>
+      </div>
+    </section>
+
+    <!-- ══════════════ FILTROS + ANIMALES ══════════════ -->
+    <section class="section" aria-labelledby="adoption-list-title">
+      <div class="container">
+
+        <!-- Barra de filtros -->
+        <div class="filters-bar" role="search" aria-label="Filtrar animales">
+          <div class="filter-group" style="flex: 2; min-width: 200px;">
+            <label for="filterSearch">Buscar</label>
+            <input type="search" id="filterSearch" placeholder="Nombre, raza, descripción...">
+          </div>
+          <div class="filter-group">
+            <label for="filterSpecies">Especie</label>
+            <select id="filterSpecies">
+              <option value="">Todas</option>
+              <!-- Se rellena dinámicamente -->
+            </select>
+          </div>
+          <div class="filter-group">
+            <label for="filterGender">Género</label>
+            <select id="filterGender">
+              <option value="">Todos</option>
+              <option value="Macho">Macho</option>
+              <option value="Hembra">Hembra</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label for="filterSize">Tamaño</label>
+            <select id="filterSize">
+              <option value="">Todos</option>
+              <option value="Pequeño">Pequeño</option>
+              <option value="Mediano">Mediano</option>
+              <option value="Grande">Grande</option>
+            </select>
+          </div>
+          <button class="btn btn--secondary btn--sm" id="resetFilters" style="flex-shrink:0; align-self: flex-end;">
+            ✕ Limpiar
+          </button>
         </div>
-    </header>
 
-    <!-- Sección principal de contenido para la página de Adopción -->
-    <main>
-        <section id="adopcion-page" class="adopcion-section">
-            <div class="container">
-                <h1>Nuestros Amigos en búsqueda de un hogar</h1>
-                <p class="section-description">Aquí puedes conocer a todos los animales que actualmente están esperando ser adoptados. Cada uno tiene una historia única y mucho amor para dar.</p>
-                
-                <!-- La cuadrícula donde se mostrarán TODOS los animales -->
-                <div class="animal-grid" id="allAnimalsGrid">
-                    <!-- Las tarjetas de todos los animales se insertarán aquí mediante JavaScript -->
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Pie de página: Contiene información de copyright y enlaces a redes sociales -->
-    <footer>
-        <div class="container">
-            <!-- El texto del footer se cargará dinámicamente desde config.json -->
-            <p id="footerTextDynamic">Cargando...</p>
-            <!-- Los enlaces sociales se generarán aquí con JavaScript desde config.json -->
-            <div class="social-links" id="socialLinksDynamic">
-                <!-- Los enlaces se generarán aquí con JavaScript -->
-            </div>
+        <!-- Pills de especie rápida -->
+        <div class="filter-pills" role="group" aria-label="Filtro rápido por especie">
+          <button class="filter-pill active" data-group="species" data-value="">Todos</button>
+          <button class="filter-pill" data-group="species" data-value="Perro">Perros</button>
+          <button class="filter-pill" data-group="species" data-value="Gato">Gatos</button>
+          <button class="filter-pill" data-group="species" data-value="Conejo">Conejos</button>
+          <button class="filter-pill" data-group="species" data-value="Pájaro">Pájaros</button>
         </div>
-    </footer>
 
-    <!-- Script de JavaScript: Necesario para cargar la configuración y los animales -->
-    <script src="js/script.js"></script>
+        <p class="results-info" id="resultsInfo">Cargando animales...</p>
 
+        <!-- Grid de animales -->
+        <div class="animals-grid" id="allAnimals" aria-live="polite" aria-label="Lista de animales en adopción">
+          <!-- Se rellena con JS -->
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════ CTA ══════════════ -->
+    <section class="cta-banner" aria-labelledby="adopt-cta">
+      <div class="container">
+        <h2 id="adopt-cta">¿Tienes alguna pregunta?</h2>
+        <p>Nuestro equipo estará encantado de orientarte sobre el proceso de adopción y ayudarte a encontrar al animal ideal para ti.</p>
+        <div class="cta-banner__actions">
+          <a href="index.html#contacto" class="btn btn--white btn--lg">Contactar con nosotros</a>
+          <a href="index.html#como-ayudar" class="btn btn--ghost-white btn--lg">Otras formas de ayudar</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Pie de página (Se inyecta dinámicamente desde script.js) -->
+  <footer class="site-footer" role="contentinfo"></footer>
+
+  <script src="js/script.js"></script>
 </body>
 </html>

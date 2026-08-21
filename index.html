@@ -1,97 +1,228 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- El título de la página ahora se cargará dinámicamente desde config.json -->
-    <title id="siteTitleDynamic">Cargando...</title>
-    <!-- Enlazamos nuestro archivo CSS para los estilos de la página -->
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cargando... — Refugio Amigo Animal</title>
+  <meta name="description" content="Refugio de animales dedicado al rescate, rehabilitación y adopción responsable. Encuentra a tu compañero ideal.">
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Preload fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 </head>
 <body>
 
-    <!-- Encabezado de la página: Contiene el logo y la navegación principal -->
-    <header>
-        <div class="container">
-            <div class="logo">
-                <!-- El texto del logo/título del sitio se cargará dinámicamente desde config.json -->
-                <a href="index.html" id="siteLogoDynamic">Cargando...</a>
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="index.html">Inicio</a></li>
-                    <li><a href="adopcion.html">Animales en Adopción</a></li>
-                    <li><a href="quienes-somos.html">Quiénes Somos</a></li>
-                    <li><a href="como-ayudar.html">Cómo Ayudar</a></li>
-                    <li><a href="contacto.html">Contacto</a></li>
-                    <!-- Eliminado: <li><a href="como-usar-plantilla.html">Usar Plantilla</a></li> -->
-                </ul>
-            </nav>
+  <!-- Cabecera (Se inyecta dinámicamente desde script.js) -->
+  <header class="site-header" role="banner"></header>
+
+  <main>
+
+    <!-- ══════════════ HERO (INICIO) ══════════════ -->
+    <section class="hero" id="hero" aria-labelledby="hero-title">
+      <div class="hero__bg" aria-hidden="true"></div>
+      <div class="hero__overlay" aria-hidden="true"></div>
+
+      <div class="container">
+        <div class="hero__content">
+          <div class="hero__tag">Bienvenidos al refugio</div>
+          <h1 id="hero-title">Cada animal merece<br><em>una segunda oportunidad</em></h1>
+          <p class="hero__sub">
+            Rescatamos, rehabilitamos y encontramos hogares para animales abandonados.
+            Adopta un compañero o colabora para cambiar su destino.
+          </p>
+          <div class="hero__actions">
+            <a href="adopcion.html" class="btn btn--primary btn--lg">Ver animales en adopción</a>
+            <a href="#como-ayudar" class="btn btn--ghost-white btn--lg">Cómo ayudar</a>
+          </div>
         </div>
-    </header>
+      </div>
 
-    <!-- Sección principal de contenido: Contiene las secciones dinámicas de la página -->
-    <main>
-        <!-- Sección Hero: La primera sección visible, con un mensaje principal y un llamado a la acción -->
-        <section id="hero" class="hero-section">
-            <div class="container">
-                <h1>¡Un hogar para cada corazón que late!</h1>
-                <p>Ayúdanos a encontrar familias amorosas para nuestros amigos peludos.</p>
-                <a href="adopcion.html" class="btn-primary">Ver Animales en Adopción</a>
+      <div class="hero__scroll" aria-hidden="true">
+        <span>Conócenos</span>
+        <div class="hero__scroll-arrow"></div>
+      </div>
+    </section>
+
+    <!-- Se inyecta dinámicamente si es la plantilla original (demo) -->
+    <div id="templatePromoSection"></div>
+
+    <!-- ══════════════ ANIMALES DESTACADOS ══════════════ -->
+    <section class="section" aria-labelledby="featured-title">
+      <div class="container">
+        <div class="section-header animate-on-scroll">
+          <div class="section-tag">Destacados</div>
+          <h2 id="featured-title">Buscan un hogar</h2>
+          <p>Conoce a algunos de nuestros amigos peludos. Cada uno tiene una gran historia y mucho amor por entregar.</p>
+        </div>
+        <div class="animals-grid" id="featuredAnimals">
+          <!-- Rellenado dinámicamente -->
+        </div>
+        <div class="text-center animate-on-scroll" style="margin-top: 3rem;">
+          <a href="adopcion.html" class="btn btn--secondary btn--lg">Ver todos los animales en adopción →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════ CÓMO AYUDAR ══════════════ -->
+    <section class="section" id="como-ayudar" aria-labelledby="help-title">
+      <div class="container">
+        <div class="section-header animate-on-scroll">
+          <div class="section-tag">Colabora</div>
+          <h2 id="help-title">¿Cómo puedes colaborar?</h2>
+          <p>Hay muchas maneras diferentes de marcar la diferencia en la vida de un animal sin hogar.</p>
+        </div>
+
+        <!-- Donación Económica -->
+        <div class="help-card animate-on-scroll" id="donacion">
+          <div class="help-card__header">
+            <div>
+              <h3>Donación Económica</h3>
+              <p>Financia gastos médicos, vacunas, tratamientos complejos y comida especial.</p>
             </div>
-        </section>
+          </div>
+          <div class="help-card__body">
+            <div id="donationMethods">
+              <!-- Rellenado dinámicamente -->
+            </div>
+          </div>
+        </div>
 
-        <!-- Sección de Animales Destacados: Aquí se cargarán dinámicamente los animales desde 'animales.json' -->
-        <section id="featured-animals" class="featured-section">
-            <div class="container">
-                <h2>Nuestros Animales Destacados</h2>
-                <!-- Cuadrícula para animales destacados (solo se muestra en esta página) -->
-                <div class="animal-grid" id="featuredAnimalGrid">
-                    <!-- Las tarjetas de animales se insertarán aquí mediante JavaScript -->
+        <!-- Donación de Materiales y Voluntariado -->
+        <div class="help-two-cols" style="margin-top: 2rem;">
+          
+          <!-- Donación de Materiales -->
+          <div class="help-card animate-on-scroll" id="materiales">
+            <div class="help-card__header">
+              <div>
+                <h3>Donación de Materiales</h3>
+                <p>Necesitamos mantas, comida, transportines y productos de limpieza diarios.</p>
+              </div>
+            </div>
+            <div class="help-card__body" id="materialsList">
+              <!-- Rellenado dinámicamente -->
+            </div>
+          </div>
+
+          <!-- Voluntariado -->
+          <div class="help-card animate-on-scroll" id="voluntariado">
+            <div class="help-card__header">
+              <div>
+                <h3>Hazte Voluntario</h3>
+                <p>Ofrece tu tiempo paseando perros, socializando gatos o apoyando eventos.</p>
+              </div>
+            </div>
+            <div class="help-card__body" id="volunteerTasks">
+              <!-- Rellenado dinámicamente -->
+            </div>
+            <div class="help-card__footer" data-volunteer-contact>
+              <!-- Rellenado dinámicamente -->
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════ REDES SOCIALES ══════════════ -->
+    <section class="section section--muted animate-on-scroll" id="redes-sociales" aria-labelledby="social-title">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag">Comunidad</div>
+          <h2 id="social-title">Síguenos en Redes Sociales</h2>
+          <p>Compartimos casos urgentes, historias de adopción y el día a día en el refugio.</p>
+        </div>
+        <div class="social-grid-buttons" id="socialGrid">
+          <!-- Rellenado dinámicamente -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════ CONTACTO ══════════════ -->
+    <section class="section animate-on-scroll" id="contacto" aria-labelledby="contact-title">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag">Hablemos</div>
+          <h2 id="contact-title">Ponte en contacto</h2>
+          <p>¿Tienes dudas sobre el proceso de adopción o quieres programar una visita? Escríbenos.</p>
+        </div>
+
+        <div class="contact-layout">
+          
+          <!-- Panel Izquierdo: Info de Contacto -->
+          <div class="contact-info">
+            <a href="#" target="_blank" rel="noopener" class="contact-detail" id="contactAddressLink">
+              <div class="contact-detail__icon">📍</div>
+              <div>
+                <div class="contact-detail__label">Ubicación</div>
+                <div class="contact-detail__value" data-contact-address>Cargando ubicación...</div>
+              </div>
+            </a>
+
+            <a href="tel:#" class="contact-detail" id="contactPhoneLink">
+              <div class="contact-detail__icon">📞</div>
+              <div>
+                <div class="contact-detail__label">Teléfono</div>
+                <div class="contact-detail__value" data-contact-phone>Cargando teléfono...</div>
+              </div>
+            </a>
+
+            <div class="contact-detail">
+              <div class="contact-detail__icon">🕒</div>
+              <div>
+                <div class="contact-detail__label">Horarios de visitas</div>
+                <div class="contact-detail__value" data-contact-hours>Cargando horarios...</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Panel Derecho: Formulario Mailto -->
+          <div class="contact-form-card">
+            <h3>Envíanos un mensaje</h3>
+            <form class="contact-form" id="contactForm">
+              <div class="form-group">
+                <label for="formName">Nombre completo</label>
+                <input type="text" id="formName" required placeholder="Introduce tu nombre">
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="formEmail">Tu email</label>
+                  <input type="email" id="formEmail" required placeholder="ejemplo@correo.com">
                 </div>
-            </div>
-        </section>
+                <div class="form-group">
+                  <label for="formSubject">Asunto</label>
+                  <select id="formSubject">
+                    <option value="Información sobre Adopción">Quiero adoptar</option>
+                    <option value="Quiero ser Voluntario">Hacer voluntariado</option>
+                    <option value="Donación / Patrocinio">Donación / Ayuda</option>
+                    <option value="Consulta General">Otra consulta</option>
+                  </select>
+                </div>
+              </div>
 
-        <!-- CONTENEDOR PARA LAS SECCIONES DE PREVISUALIZACIÓN CON ESTILO DE TARJETA -->
-        <div class="home-previews-grid container">
+              <div class="form-group">
+                <label for="formMessage">Tu mensaje</label>
+                <textarea id="formMessage" rows="5" required placeholder="Escribe tu consulta detalladamente..."></textarea>
+              </div>
 
-            <!-- Sección de Previsualización "Quiénes Somos" -->
-            <section id="about-us-preview" class="preview-card">
-                <h2>¿Quiénes Somos?</h2>
-                <p>Somos un equipo de voluntarios dedicados a rescatar y rehabilitar animales abandonados, ofreciéndoles una segunda oportunidad. Creemos que cada animal merece amor y un hogar seguro.</p>
-                <a href="quienes-omos.html" class="btn-secondary">Conoce más sobre nosotros</a>
-            </section>
+              <button type="submit" class="btn btn--primary btn--lg" style="width: 100%; justify-content: center;">
+                Enviar mensaje por correo
+              </button>
+            </form>
+          </div>
 
-            <!-- Sección de Previsualización "Cómo Ayudar" -->
-            <section id="how-to-help-preview" class="preview-card">
-                <h2>¿Cómo Puedes Ayudar?</h2>
-                <p>Tu apoyo es esencial para el bienestar de nuestros animales. Descubre las diferentes maneras en las que puedes colaborar con el refugio.</p>
-                <a href="como-ayudar.html" class="btn-secondary">Descubre Cómo Ayudar</a>
-            </section>
-
-            <!-- Previsualización "Contacto" -->
-            <section id="contact-preview" class="preview-card">
-                <h2>Contáctanos</h2>
-                <p>¿Tienes preguntas o quieres saber más? Estamos aquí para ayudarte.</p>
-                <a href="contacto.html" class="btn-secondary">Ponte en Contacto</a>
-            </section>
-        </div> <!-- FIN home-previews-grid -->
-    </main>
-
-    <!-- Pie de página: Contiene información de copyright y enlaces a redes sociales -->
-    <footer>
-        <div class="container">
-            <!-- El texto del footer se cargará dinámicamente desde config.json -->
-            <p id="footerTextDynamic">Cargando...</p>
-            <!-- Los enlaces sociales se generarán aquí con JavaScript desde config.json -->
-            <div class="social-links" id="socialLinksDynamic">
-                <!-- Los enlaces se generarán aquí con JavaScript -->
-            </div>
         </div>
-    </footer>
+      </div>
+    </section>
 
-    <!-- Script de JavaScript: Se coloca al final del <body> para asegurar que el HTML esté cargado antes de que el script intente manipularlo -->
-    <script src="js/script.js"></script>
 
+
+  </main>
+
+  <!-- Pie de página (Se inyecta dinámicamente desde script.js) -->
+  <footer class="site-footer" role="contentinfo"></footer>
+
+  <script src="js/script.js"></script>
 </body>
 </html>

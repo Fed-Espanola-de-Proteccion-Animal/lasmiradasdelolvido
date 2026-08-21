@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel de Control — Refugio Amigo Animal</title>
+  <meta name="description" content="Panel de administración para la gestión de animales en el catálogo.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <style>
+    /* Estilos específicos para la consola de administración */
+    .admin-login {
+      max-width: 480px;
+      margin: 80px auto;
+      padding: var(--space-8);
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-lg);
+    }
+    .admin-container {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 0 var(--space-6);
+    }
+    .admin-header-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--space-8);
+      flex-wrap: wrap;
+      gap: var(--space-4);
+    }
+    .admin-table-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: var(--space-6);
+      box-shadow: var(--shadow-sm);
+      overflow-x: auto;
+    }
+    .admin-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+    .admin-table th, .admin-table td {
+      padding: var(--space-4);
+      border-bottom: 1px solid var(--border-light);
+      vertical-align: middle;
+    }
+    .admin-table th {
+      font-weight: 700;
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .admin-table td img {
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+      border-radius: var(--radius-sm);
+    }
+    .admin-badge {
+      display: inline-block;
+      padding: 2px 8px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      border-radius: var(--radius-full);
+    }
+    .admin-badge--adoption { background: var(--primary-light); color: var(--primary); }
+    .admin-badge--foster { background: var(--secondary-light); color: var(--secondary-dark); }
+    
+    /* Formulario modal/sidebar de animal */
+    .admin-drawer {
+      position: fixed;
+      top: 0;
+      right: -550px;
+      width: 100%;
+      max-width: 500px;
+      height: 100%;
+      background: var(--bg-card);
+      box-shadow: -10px 0 40px rgba(0,0,0,0.15);
+      z-index: 2000;
+      transition: right 0.3s ease;
+      overflow-y: auto;
+      padding: var(--space-8);
+      border-left: 1px solid var(--border-light);
+    }
+    .admin-drawer.open {
+      right: 0;
+    }
+    .admin-drawer-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.4);
+      z-index: 1999;
+      display: none;
+    }
+    .admin-drawer-overlay.open {
+      display: block;
+    }
+    .admin-drawer-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--space-6);
+      border-bottom: 1px solid var(--border-light);
+      padding-bottom: var(--space-4);
+    }
+    .preview-upload-img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      border-radius: var(--radius-sm);
+      margin-top: var(--space-2);
+      border: 1px dashed var(--border);
+      display: none;
+    }
+    
+    /* Loading overlay */
+    .loading-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(26, 26, 46, 0.85);
+      backdrop-filter: blur(8px);
+      z-index: 3000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      display: none;
+    }
+    .spinner {
+      width: 50px;
+      height: 50px;
+      border: 5px solid rgba(255,255,255,0.1);
+      border-top-color: var(--primary);
+      border-radius: 50%;
+      animation: spin 1s infinite linear;
+      margin-bottom: var(--space-4);
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Cabecera (Se inyecta dinámicamente) -->
+  <header class="site-header" role="banner"></header>
+
+  <main>
+
+    <!-- ══════════════ MODAL ACCESO / LOGIN (DRAWER) ══════════════ -->
+    <div class="admin-drawer-overlay" id="loginOverlay" style="display: none;"></div>
+    <div class="admin-drawer" id="loginDrawer" style="display: none; padding: var(--space-8); right: -550px;" role="dialog" aria-modal="true">
+      <div class="admin-drawer-header" style="margin-bottom: var(--space-6);">
+        <h3 style="margin:0;">Conectar Repositorio</h3>
+        <button id="btnCancelLogin" style="background:none; border:none; font-size:1.5rem; cursor:pointer;">✕</button>
+      </div>
+
+      <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: var(--space-6);">
+        Conecta tu repositorio clonado para empezar a editar la información real y añadir animales en tu propia web.
+      </p>
+
+      <form id="loginForm" class="contact-form" style="padding:0; background:none; box-shadow:none;">
+        <div class="form-group">
+          <label for="ghRepo">Repositorio GitHub</label>
+          <input type="text" id="ghRepo" required placeholder="ej: usuario/nombre-repositorio">
+          <span style="font-size:0.75rem; color:var(--text-muted);">El nombre de tu copia en GitHub (ej: miusuario/refugio-web).</span>
+        </div>
+
+        <div class="form-group" style="margin-bottom: var(--space-6);">
+          <label for="ghToken">Token de Acceso Personal (PAT)</label>
+          <input type="password" id="ghToken" required placeholder="ghp_xxxxxxxxxxxxxxxxxxxx">
+          <span style="font-size:0.75rem; color:var(--text-muted); display:block; margin-top:4px;">
+            Permite guardar los cambios directamente. 
+            <a href="https://github.com/settings/tokens/new?description=Web%20Refugio%20CMS&scopes=public_repo" target="_blank" style="color:var(--primary); font-weight:600;">Generar token (1 minuto)</a>
+          </span>
+        </div>
+
+        <button type="submit" class="btn btn--primary" style="width: 100%; justify-content: center;">
+          Conectar y Guardar
+        </button>
+      </form>
+    </div>
+
+    <!-- ══════════════ SECCIÓN DASHBOARD (INVENTARIO) ══════════════ -->
+    <section id="dashboardSection" class="admin-container" style="display: block;">
+      
+      <!-- Banner de Modo Demostración -->
+      <div id="demoBanner" style="display: none; background: var(--bg-light); border: 2px dashed var(--primary); border-radius: var(--radius-md); padding: var(--space-4); margin-bottom: var(--space-6); justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+        <div>
+          <h4 style="color: var(--primary-dark); font-size: 1rem; margin-bottom: 2px; font-family: var(--font-display);">Modo Demostración</h4>
+          <p style="font-size: 0.85rem; color: var(--text-secondary); margin:0;">Estás probando el panel de control. Los cambios no se guardarán en GitHub. Conecta tu repositorio para gestionarlo de verdad.</p>
+        </div>
+        <div style="display: flex; gap: var(--space-3); flex-wrap: wrap;">
+          <a href="como-usar.html" class="btn btn--secondary btn--sm" style="margin:0;">¿Cómo usar esta plantilla?</a>
+          <button class="btn btn--primary btn--sm" id="btnOpenLogin" style="margin:0;">Conectar mi Repositorio</button>
+        </div>
+      </div>
+
+      <div class="admin-header-actions">
+        <div>
+          <h1 style="font-size: 2rem; margin-bottom: var(--space-1);">Gestión del Refugio</h1>
+          <p style="color: var(--text-secondary);" id="repoNameLabel">Modo Demostración</p>
+        </div>
+        <div style="display: flex; gap: var(--space-3); align-items: center;">
+          <button class="btn btn--green" id="btnAddAnimal">Añadir Animal</button>
+          <button class="btn btn--secondary" id="btnLogout" style="display: none;">Cerrar Sesión</button>
+        </div>
+      </div>
+
+      <!-- Tabs de Navegación del Panel -->
+      <div class="admin-tabs" style="display: flex; gap: var(--space-4); margin-bottom: var(--space-6); border-bottom: 2px solid var(--border-light); padding-bottom: 2px;">
+        <button class="admin-tab active" id="btnTabAnimals" style="background: none; border: none; font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; padding: 8px 16px; cursor: pointer; color: var(--primary); border-bottom: 3px solid var(--primary); margin-bottom: -4px;">Catálogo de Animales</button>
+        <button class="admin-tab" id="btnTabSettings" style="background: none; border: none; font-family: var(--font-display); font-weight: 600; font-size: 1.1rem; padding: 8px 16px; cursor: pointer; color: var(--text-secondary); margin-bottom: -4px; transition: all var(--transition);">Configuración de la Web</button>
+      </div>
+
+      <!-- Panel de Catálogo de Animales -->
+      <div id="panelAnimals">
+        <div class="admin-table-card">
+          <table class="admin-table">
+            <thead>
+               <tr>
+                <th>Foto</th>
+                <th>Nombre</th>
+                <th>Especie</th>
+                <th>Género</th>
+                <th>Edad</th>
+                <th>Destacado</th>
+                <th style="text-align: right;">Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="adminTableBody">
+              <!-- Rellenado dinámicamente con JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Panel de Configuración del Refugio -->
+      <div id="panelSettings" style="display: none;">
+        <div style="max-width: 700px; margin: 0 auto;" class="contact-form-card">
+          <h2 style="font-family: var(--font-display); font-size: 1.5rem; margin-bottom: var(--space-2);">Personalizar Refugio</h2>
+          <p style="color: var(--text-secondary); font-size: 0.92rem; margin-bottom: var(--space-6);">Modifica los textos, enlaces de redes sociales y los colores de la web. Los cambios se guardarán automáticamente en tu repositorio.</p>
+
+          <form id="configForm" class="contact-form" style="padding:0; background:none; box-shadow:none;">
+            
+            <!-- Grupo 1: Información Básica -->
+            <details class="guide-accordion" open>
+              <summary>Información Básica</summary>
+              <div class="accordion-content">
+                <div class="form-group">
+                  <label for="guideTitle">Nombre del Refugio</label>
+                  <input type="text" id="guideTitle" placeholder="Ej. Refugio Huellas Felices" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="guideTagline">Lema o Subtítulo</label>
+                  <input type="text" id="guideTagline" placeholder="Ej. Por un mundo sin abandono">
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="guideEmail">Email de Contacto</label>
+                    <input type="email" id="guideEmail" placeholder="contacto@refugio.com" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="guidePhone">Teléfono</label>
+                    <input type="text" id="guidePhone" placeholder="+34 123 456 789" required>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="guideAddress">Dirección Física</label>
+                  <input type="text" id="guideAddress" placeholder="Calle Ejemplo 123, Madrid" required>
+                </div>
+              </div>
+            </details>
+
+            <!-- Grupo 2: Redes Sociales -->
+            <details class="guide-accordion">
+              <summary>Redes Sociales</summary>
+              <div class="accordion-content">
+                <div class="form-group">
+                  <label for="guideInstagram">Enlace de Instagram</label>
+                  <input type="text" id="guideInstagram" placeholder="https://instagram.com/usuario">
+                </div>
+
+                <div class="form-group">
+                  <label for="guideFacebook">Enlace de Facebook</label>
+                  <input type="text" id="guideFacebook" placeholder="https://facebook.com/pagina">
+                </div>
+
+                <div class="form-group">
+                  <label for="guideWhatsApp">Enlace o número de WhatsApp</label>
+                  <input type="text" id="guideWhatsApp" placeholder="https://wa.me/34123456789">
+                </div>
+              </div>
+            </details>
+
+            <!-- Grupo 3: Colores del Tema -->
+            <details class="guide-accordion">
+              <summary>Colores del Tema</summary>
+              <div class="accordion-content">
+                <div class="color-pickers-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-4);">
+                  
+                  <div class="color-input-group" style="display: flex; flex-direction: column; gap: var(--space-1);">
+                    <label for="colorPrimary">Primario (Botones/Links)</label>
+                    <div class="color-picker-wrap" style="display: flex; align-items: center; border: 1px solid var(--border-light); padding: 8px; border-radius: var(--radius-sm); background: var(--bg-light); gap: 8px;">
+                      <input type="color" id="colorPrimary" value="#E8622A">
+                      <input type="text" id="colorPrimaryText" placeholder="#HEX" style="border:none; background:transparent; font-family:monospace; width:80px; outline:none;">
+                    </div>
+                  </div>
+
+                  <div class="color-input-group" style="display: flex; flex-direction: column; gap: var(--space-1);">
+                    <label for="colorSecondary">Secundario (Secciones)</label>
+                    <div class="color-picker-wrap" style="display: flex; align-items: center; border: 1px solid var(--border-light); padding: 8px; border-radius: var(--radius-sm); background: var(--bg-light); gap: 8px;">
+                      <input type="color" id="colorSecondary" value="#2D6A4F">
+                      <input type="text" id="colorSecondaryText" placeholder="#HEX" style="border:none; background:transparent; font-family:monospace; width:80px; outline:none;">
+                    </div>
+                  </div>
+
+                  <div class="color-input-group" style="display: flex; flex-direction: column; gap: var(--space-1);">
+                    <label for="colorAccent">Acento (Detalles/Destacado)</label>
+                    <div class="color-picker-wrap" style="display: flex; align-items: center; border: 1px solid var(--border-light); padding: 8px; border-radius: var(--radius-sm); background: var(--bg-light); gap: 8px;">
+                      <input type="color" id="colorAccent" value="#FFB703">
+                      <input type="text" id="colorAccentText" placeholder="#HEX" style="border:none; background:transparent; font-family:monospace; width:80px; outline:none;">
+                    </div>
+                  </div>
+
+                  <div class="color-input-group" style="display: flex; flex-direction: column; gap: var(--space-1);">
+                    <label for="colorDarkBg">Fondo Oscuro (Header/Footer)</label>
+                    <div class="color-picker-wrap" style="display: flex; align-items: center; border: 1px solid var(--border-light); padding: 8px; border-radius: var(--radius-sm); background: var(--bg-light); gap: 8px;">
+                      <input type="color" id="colorDarkBg" value="#1A1A2E">
+                      <input type="text" id="colorDarkBgText" placeholder="#HEX" style="border:none; background:transparent; font-family:monospace; width:80px; outline:none;">
+                    </div>
+                  </div>
+
+                  <div class="color-input-group" style="display: flex; flex-direction: column; gap: var(--space-1);">
+                    <label for="colorLightBg">Fondo Claro (Web)</label>
+                    <div class="color-picker-wrap" style="display: flex; align-items: center; border: 1px solid var(--border-light); padding: 8px; border-radius: var(--radius-sm); background: var(--bg-light); gap: 8px;">
+                      <input type="color" id="colorLightBg" value="#FFFBF7">
+                      <input type="text" id="colorLightBgText" placeholder="#HEX" style="border:none; background:transparent; font-family:monospace; width:80px; outline:none;">
+                    </div>
+                  </div>
+
+                  <div class="color-input-group" style="display: flex; flex-direction: column; gap: var(--space-1);">
+                    <label for="colorCardBg">Fondo de Tarjetas</label>
+                    <div class="color-picker-wrap" style="display: flex; align-items: center; border: 1px solid var(--border-light); padding: 8px; border-radius: var(--radius-sm); background: var(--bg-light); gap: 8px;">
+                      <input type="color" id="colorCardBg" value="#FFFFFF">
+                      <input type="text" id="colorCardBgText" placeholder="#HEX" style="border:none; background:transparent; font-family:monospace; width:80px; outline:none;">
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </details>
+
+            <button type="submit" class="btn btn--primary btn--lg" style="width: 100%; justify-content: center; margin-top: var(--space-6);" id="btnSaveConfig">
+              Guardar Configuración en GitHub
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════ FORMULARIO LATERAL (DRAWER) ══════════════ -->
+    <div class="admin-drawer-overlay" id="drawerOverlay"></div>
+    <div class="admin-drawer" id="adminDrawer" role="dialog" aria-modal="true">
+      <div class="admin-drawer-header">
+        <h3 id="drawerTitle">Añadir Nuevo Animal</h3>
+        <button id="btnCancelDrawer" style="background:none; border:none; font-size:1.5rem; cursor:pointer;">✕</button>
+      </div>
+
+      <form id="animalForm" class="contact-form" style="padding:0; background:none; box-shadow:none;">
+        <input type="hidden" id="animalId">
+        
+        <div class="form-group">
+          <label for="animalName">Nombre del Animal</label>
+          <input type="text" id="animalName" required placeholder="Ej. Toby">
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="animalSpecies">Especie</label>
+            <select id="animalSpecies" required>
+              <option value="Perro">Perro</option>
+              <option value="Gato">Gato</option>
+              <option value="Conejo">Conejo</option>
+              <option value="Pájaro">Pájaro</option>
+              <option value="Otro">Otro</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="animalBreed">Raza</label>
+            <input type="text" id="animalBreed" required placeholder="Ej. Mestizo, Siamés">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="animalGender">Género</label>
+            <select id="animalGender" required>
+              <option value="Macho">Macho</option>
+              <option value="Hembra">Hembra</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="animalSize">Tamaño</label>
+            <select id="animalSize" required>
+              <option value="Pequeño">Pequeño</option>
+              <option value="Mediano">Mediano</option>
+              <option value="Grande">Grande</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="animalAge">Edad (en años)</label>
+            <input type="number" id="animalAge" step="0.1" required placeholder="Ej. 1.5 (un año y medio)">
+            <input type="hidden" id="animalType" value="adoption">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="animalDesc">Descripción</label>
+          <textarea id="animalDesc" rows="3" required placeholder="Cuéntanos su historia, temperamento..."></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="animalPersonality">Personalidad (separada por comas)</label>
+          <input type="text" id="animalPersonality" placeholder="Ej. Juguetón, Cariñoso, Activo">
+        </div>
+
+        <h4 style="margin: 1.5rem 0 0.5rem 0; color: var(--text-primary);">Estado de Salud</h4>
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 1.5rem;">
+          <label style="display:flex; align-items:center; gap:5px; font-size:0.85rem; cursor:pointer;">
+            <input type="checkbox" id="animalVaccinated"> Vacunado
+          </label>
+          <label style="display:flex; align-items:center; gap:5px; font-size:0.85rem; cursor:pointer;">
+            <input type="checkbox" id="animalNeutered"> Esterilizado
+          </label>
+          <label style="display:flex; align-items:center; gap:5px; font-size:0.85rem; cursor:pointer;">
+            <input type="checkbox" id="animalMicrochip"> Microchip
+          </label>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr; gap: 10px; margin-bottom: 1.5rem;">
+          <label style="display:flex; align-items:center; gap:5px; font-size:0.85rem; cursor:pointer;">
+            <input type="checkbox" id="animalFeatured"> ⭐ Destacar en página de inicio
+          </label>
+        </div>
+
+        <div class="form-group">
+          <label for="animalImageFile">Subir Foto (Nueva)</label>
+          <input type="file" id="animalImageFile" accept="image/*">
+          <img id="uploadImgPreview" class="preview-upload-img" src="" alt="Vista previa">
+          <input type="hidden" id="animalImageString">
+        </div>
+
+        <button type="submit" class="btn btn--primary" style="width:100%; justify-content:center; margin-top:2rem;">
+          💾 Guardar Animal
+        </button>
+      </form>
+    </div>
+
+    <!-- ══════════════ PANTALLA CARGA (SPINNER) ══════════════ -->
+    <div class="loading-overlay" id="loadingOverlay">
+      <div class="spinner"></div>
+      <h3 id="loadingText">Subiendo cambios...</h3>
+      <p style="font-size:0.85rem; opacity:0.7; margin-top:5px;">Por favor, no cierres esta pestaña.</p>
+    </div>
+
+  </main>
+
+  <!-- Pie de página (Se inyecta dinámicamente) -->
+  <footer class="site-footer" role="contentinfo"></footer>
+
+  <script src="js/script.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>
