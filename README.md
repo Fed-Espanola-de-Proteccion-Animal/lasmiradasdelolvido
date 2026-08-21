@@ -1,75 +1,39 @@
 # 🐾 Plantilla Web para Refugios de Animales
 
-¡Bienvenido/a! Esta es una plantilla web moderna, premium y lista para usar diseñada especialmente para **refugios de animales y protectoras**. 
+¡Bienvenido/a! Esta es una plantilla web moderna, premium y autogestionable diseñada especialmente para **refugios de animales y protectoras**. 
 
-El objetivo es que cualquier refugio pueda tener su propia web profesional en cuestión de minutos, con el mínimo esfuerzo de mantenimiento.
+El objetivo es que cualquier asociación o voluntario pueda tener su propia web profesional en cuestión de minutos de forma **100% gratuita**, con alojamiento gratuito permanente y un **panel de administración totalmente visual** sin escribir código.
+
+🔗 **Prueba la Demo en Vivo:** [https://refugio-animales-plantilla.web.app](https://refugio-animales-plantilla.web.app)  
+🔗 **Prueba el Panel de Admin (Modo Demo):** [https://refugio-animales-plantilla.web.app/admin.html](https://refugio-animales-plantilla.web.app/admin.html)
 
 ---
 
 ## ✨ Características Principales
 
-*   **Diseño Premium y Responsivo:** Interfaz fluida y optimizada para móviles con animaciones modernas al hacer scroll.
-*   **Mantenimiento Ultra-Simple (Consolidado):**
-    *   **`index.html` (Página Principal):** Muestra el Inicio, Quiénes Somos (Misión, Valores, Equipo), Cómo Colaborar (Donaciones, Voluntarios, Acogida) y el panel de Contacto en una sola página fluida con navegación por secciones.
-    *   **`adopcion.html` (Catálogo):** Filtros avanzados en tiempo real (especie, género, tamaño, acogida) y visualización detallada en ventanas modales.
-*   **Cabecera y Pie Dinámicos:** La barra de navegación y el pie de página se inyectan automáticamente desde JavaScript. Si cambias tu email, teléfono o redes sociales en tu configuración, **se actualizan en todo el sitio al instante**.
-*   **Panel de Personalización (`guia.html`):** Una herramienta interactiva integrada en la propia web que te permite probar colores en vivo, rellenar tus datos y generar automáticamente el archivo de configuración.
+*   **Diseño Premium y Sencillo:** Estructura limpia y enfocada en lo verdaderamente importante: Adopciones, Ayuda Directa (Bizum y Cuenta Bancaria) y Contacto. Totalmente responsivo para móviles.
+*   **Panel de Administración (CMS Visual) Integrado:**
+    *   **Catálogo de Animales:** Permite dar de alta, editar y borrar animales, así como subir sus fotografías de forma automática desde tu ordenador.
+    *   **Configuración de la Web:** Cambia los datos de contacto, enlaces de redes sociales (Instagram, Facebook, WhatsApp) y la paleta de colores de la web de forma 100% visual.
+*   **Guardado y Commit Automático:** Al guardar cambios desde el panel de control, los scripts realizan un commit automático de los JSONs (`animales.json` y `config.json`) y las imágenes directamente en tu repositorio usando la API de GitHub. No necesitas servidores, bases de datos ni servicios de pago.
+*   **Modo Demostración Seguro:** El panel de administración está abierto por defecto en modo de pruebas para que cualquiera pueda testearlo antes de clonarlo. Para editar la web real, solo debes conectar tu repositorio con un Token de Acceso seguro.
 
 ---
 
-## 🚀 Guía Rápida de Inicio (En 3 Pasos)
+## 🚀 Cómo Desplegar tu Web en 3 Pasos (Sin programar)
 
-### Paso 1: Rellenar tus datos de forma interactiva
-1.  Abre la web en tu navegador.
-2.  Navega a la página de **Guía de Personalización** (puedes encontrar un link destacado en el pie de página o ir directamente a `guia.html`).
-3.  Usa el panel izquierdo para cambiar el nombre del refugio, tu email, teléfono, dirección y elegir tus colores de marca en tiempo real.
-4.  Copia el código JSON generado en el panel derecho.
-5.  Pégalo dentro de tu archivo local **`data/config.json`** y guárdalo.
+### Paso 1: Haz Fork del Repositorio
+Inicia sesión en tu cuenta de GitHub (crearla es gratis) y haz clic en el botón **Fork** (esquina superior derecha de esta página) para crear una copia exacta en tu cuenta.
 
-### Paso 2: Añadir tus animales en adopción
-Abre el archivo **`data/animales.json`** y añade tus animales siguiendo este formato:
-```json
-[
-  {
-    "id": "toby-1",
-    "name": "Toby",
-    "species": "Perro",
-    "breed": "Mestizo",
-    "age": 1.5,
-    "gender": "Macho",
-    "size": "Mediano",
-    "description": "Toby es un perro muy cariñoso y enérgico, ideal para familias activas.",
-    "image": "img/animales/toby.jpg",
-    "vaccinated": true,
-    "neutered": true,
-    "microchip": true,
-    "featured": true,
-    "personality": ["Activo", "Juguetón", "Sociable"],
-    "type": "adoption",
-    "isAdopted": false
-  }
-]
-```
-> 💡 **Tip:** Guarda las fotos de tus animales en la carpeta `img/animales/`. En el campo `"image"`, pon la ruta a esa imagen (por ejemplo: `img/animales/toby.jpg`). También puedes usar URLs directas de internet.
+### Paso 2: Activa GitHub Pages (Hosting Gratis)
+1.  Entra en tu nuevo repositorio copiado y ve a **Settings** (Configuración) > **Pages** (menú izquierdo).
+2.  Bajo **Build and deployment > Branch**, selecciona la rama **`main`** y la carpeta `/ (root)`.
+3.  Haz clic en **Save**. ¡Listo! En un par de minutos tu web estará publicada en la URL que te muestre GitHub (ej. `https://tu-usuario.github.io/refugio-animales-plantilla/`).
 
-### Paso 3: ¡Publicar tu web gratis!
-La forma más sencilla de publicar la web es usar **GitHub Pages**:
-1.  Sube todos los archivos de tu carpeta local a un repositorio en tu cuenta de GitHub.
-2.  En GitHub, entra en tu repositorio y ve a **Settings** (Configuración) > **Pages**.
-3.  Bajo **Build and deployment**, selecciona la rama `main` (o `master`) y la carpeta `/ (root)`.
-4.  Haz clic en **Save**. ¡Listo! En unos segundos tu web estará en el aire.
-
----
-
-## 📊 (Opcional) Gestionar animales desde Google Sheets
-
-Si quieres que los voluntarios gestionen las altas y bajas de animales desde una hoja de cálculo de Google (Google Sheets) sin editar archivos de código:
-
-1.  Crea un Google Sheet y renombra la pestaña principal a **`Animales`**.
-2.  Configura las columnas de la primera fila exactamente así:
-    `id` | `name` | `species` | `breed` | `age` | `gender` | `size` | `description` | `image` | `vaccinated` | `neutered` | `microchip` | `featured` | `personality` | `type` | `isAdopted`
-3.  Ve a **Extensiones > Apps Script**, pega el script provisto en la guía interactiva (`guia.html`) y haz clic en **Desplegar > Nueva implementación** como "Aplicación web" accesible por "Cualquier persona".
-4.  Copia la URL provista (`/exec`) y pégala en el campo `"appsScriptAnimalsUrl"` de tu archivo `data/config.json`.
+### Paso 3: Configura y Administra tu Web
+1.  Abre tu nueva dirección web y añade `/admin.html` al final (ej: `https://tu-usuario.github.io/refugio-animales-plantilla/admin.html`).
+2.  Haz clic en el botón superior **"Conectar mi Repositorio"** e introduce tu usuario/repositorio y tu Token de Acceso de GitHub (el panel incluye un link para crearlo en 1 minuto).
+3.  ¡Empieza a subir tus animales, fotos e información visualmente! La web pública se actualizará automáticamente en unos instantes tras cada guardado.
 
 ---
 
