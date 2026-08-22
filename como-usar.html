@@ -125,12 +125,9 @@
                 Para que el panel de administración de tu web pueda guardar tus animales y editar los colores de forma directa, necesita un permiso seguro de escritura en tu cuenta.
               </p>
               <ol style="margin-left: var(--space-5); display: flex; flex-direction: column; gap: var(--space-2);">
-                <li>Haz clic en este enlace directo: <a href="https://github.com/settings/tokens/new?description=Web%20Refugio%20CMS&scopes=public_repo" target="_blank" style="color: var(--primary); font-weight: 600;">Generar Token de GitHub</a>. Te llevará directo al formulario adecuado.</li>
-                <li>En el campo <strong>Note</strong>, escribe algo que identifique el permiso (ej. <code>Web Refugio Mascotas</code>).</li>
-                <li>En el desplegable <strong>Expiration</strong>, selecciona la opción <strong>No expiration</strong> (Sin expiración) para que tu panel no caduque nunca.</li>
-                <li>En los permisos inferiores, asegúrate de que la casilla <strong><code>public_repo</code></strong> esté marcada con un check.</li>
-                <li>Baja al final de la página y haz clic en el botón verde <strong>Generate token</strong>.</li>
-                <li><strong>⚠️ MUY IMPORTANTE:</strong> GitHub te mostrará una clave verde que empieza por <code>ghp_...</code>. <strong>Cópiala completa y guárdala</strong> en tus notas o en tu móvil. Si recargas esa página, no podrás volver a verla.</li>
+                <li><strong>Método Rápido (Token Clásico):</strong> Haz clic en este enlace directo: <a href="https://github.com/settings/tokens/new?description=Web%20Refugio%20CMS&scopes=public_repo" target="_blank" style="color: var(--primary); font-weight: 600;">Generar Token de GitHub</a>. Marca la casilla <strong><code>public_repo</code></strong> y haz clic en <strong>Generate token</strong> (creará una clave <code>ghp_...</code>).</li>
+                <li><strong>Método para Organizaciones / Multirrefugio (Fine-Grained Token):</strong> Si tu web pertenece a una Organización o Federación con varios repositorios, puedes usar un Fine-Grained Token (<code>github_pat_...</code>). Elige tu Organización como <em>Resource Owner</em>, selecciona únicamente tu repositorio y en <em>Contents</em> marca <strong>Read and Write</strong>.</li>
+                <li><strong>⚠️ MUY IMPORTANTE:</strong> Copia completa la clave que te muestre GitHub (empieza por <code>ghp_...</code> o <code>github_pat_...</code>) y guárdala en tus notas.</li>
               </ol>
             </div>
           </details>
