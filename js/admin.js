@@ -194,8 +194,23 @@ function hideLoading() {
 // ════════════════════════════════════════════════════════════
 async function handleLogin(e) {
   e.preventDefault();
-  const repo = document.getElementById('ghRepo').value.trim();
-  const token = document.getElementById('ghToken').value.trim();
+  let repoInput = document.getElementById('ghRepo').value.trim();
+  let tokenInput = document.getElementById('ghToken').value.trim();
+
+  // Limpiar la URL del repositorio si el usuario pegó el enlace completo
+  let repo = repoInput
+    .replace(/^https?:\/\/github\.com\//i, '')
+    .replace(/\.git$/i, '')
+    .replace(/^\/+|\/+$/g, '')
+    .trim();
+
+  // Asegurar formato usuario/repositorio
+  if (!repo.includes('/') || repo.split('/').length !== 2) {
+    alert('Formato de repositorio incorrecto. Debe tener la forma: usuario/repositorio (ejemplo: lasmiradasdelolvido/asociacion)');
+    return;
+  }
+
+  const token = tokenInput;
 
   showLoading('Verificando repositorio en GitHub...');
 
@@ -208,10 +223,16 @@ async function handleLogin(e) {
     });
 
     if (!res.ok) {
-      throw new Error('Repositorio o token inválido. Verifica los permisos.');
+      if (res.status === 401) {
+        throw new Error('Token inválido o sin permisos. Asegúrate de que el token sea correcto.');
+      } else if (res.status === 404) {
+        throw new Error(`No se encontró el repositorio "${repo}". Verifica que el nombre del usuario y repositorio sean exactos.`);
+      } else {
+        throw new Error(`Error de GitHub (${res.status}). Verifica tus credenciales.`);
+      }
     }
 
-    // Guardar credenciales
+    // Guardar credenciales limpias
     localStorage.setItem('gh_token', token);
     localStorage.setItem('gh_repo', repo);
     GH_TOKEN = token;
@@ -221,7 +242,12 @@ async function handleLogin(e) {
     closeLoginDrawer();
     showDashboard();
   } catch (err) {
-    alert(`Error de acceso: ${err.message}`);
+    console.error('Login error:', err);
+    if (err.name === 'TypeError' || err.message.includes('Failed to fetch')) {
+      alert(`Error de conexión (Failed to fetch):\n- Comprueba si pegaste la URL completa en vez de "usuario/repositorio".\n- Si usas un bloqueador de anuncios o Brave Shield, desactívalo para esta página.\n- Comprueba tu conexión a internet.`);
+    } else {
+      alert(`Error de acceso: ${err.message}`);
+    }
   } finally {
     hideLoading();
   }

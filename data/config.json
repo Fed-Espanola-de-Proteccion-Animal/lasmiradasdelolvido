@@ -1,45 +1,45 @@
 {
-  "isTemplate": true,
-  "siteTitle": "Refugio Amigo Animal",
-  "siteTagline": "Cada animal merece una segunda oportunidad",
-  "footerText": "Rescatando y rehabilitando animales en situación de abandono.",
-  "logoEmoji": "",
+  "isTemplate": false,
+  "siteTitle": "Las Miradas del Olvido",
+  "siteTagline": "Protección Animal, Fauna Urbana y Casos Especiales",
+  "footerText": "Asociación dedicada al rescate, protección y rehabilitación de animales abandonados, exóticos y fauna urbana.",
+  "logoEmoji": "🐾",
 
   "homepageText": {
-    "heroTag": "Bienvenidos al refugio",
-    "heroTitle": "Cada animal merece<br><em>una segunda oportunidad</em>",
-    "heroDescription": "Rescatamos, rehabilitamos y encontramos hogares para animales abandonados. Adopta un compañero o colabora para cambiar su destino.",
-    "featuredTitle": "Buscan un hogar",
-    "featuredDescription": "Conoce a algunos de nuestros amigos peludos. Cada uno tiene una gran historia y mucho amor por entregar.",
+    "heroTag": "Asociación de Protección Animal",
+    "heroTitle": "Dando voz a<br><em>Las Miradas del Olvido</em>",
+    "heroDescription": "Rescatamos, rehabilitamos y defendemos a animales en situación de abandono o vulnerabilidad. Adopta, acoge o colabora para transformar sus vidas.",
+    "featuredTitle": "Animales en Adopción y Acogida",
+    "featuredDescription": "Conoce a nuestros rescatados. Cada uno busca una oportunidad y una familia que le brinde el amor que merece.",
     "socialTitle": "Síguenos en Redes Sociales",
-    "socialDescription": "Compartimos casos urgentes, historias de adopción y el día a día en el refugio.",
+    "socialDescription": "Sigue nuestros rescates diarios, casos urgentes e historias de superación.",
     "contactTitle": "Ponte en contacto",
-    "contactDescription": "¿Tienes dudas sobre el proceso de adopción o quieres programar una visita? Escríbenos."
+    "contactDescription": "¿Tienes dudas sobre adopción, acogidas o quieres colaborar? Escríbenos."
   },
 
   "socialLinks": [
     {
-      "name": "Instagram",
-      "url": "https://instagram.com/tu_usuario",
-      "icon": "instagram"
-    },
-    {
       "name": "Facebook",
-      "url": "https://facebook.com/tu_pagina",
+      "url": "https://www.facebook.com/lasmiradasdelolvido/",
       "icon": "facebook"
     },
     {
-      "name": "WhatsApp",
-      "url": "https://wa.me/34600000000",
-      "icon": "whatsapp"
+      "name": "Instagram",
+      "url": "https://instagram.com/lmdolvido",
+      "icon": "instagram"
+    },
+    {
+      "name": "Twitter",
+      "url": "https://twitter.com/lmdolvido",
+      "icon": "twitter"
     }
   ],
 
   "contactInfo": {
-    "email": "contacto@ejemplo.com",
-    "phone": "+34 600 000 000",
-    "address": "Calle de Ejemplo, 123, 28000 Madrid, España",
-    "hours": "Lunes–Viernes: 09:00–18:00 | Sábados: 10:00–14:00 | Domingos: Cerrado"
+    "email": "lasmiradasdelolvido@gmail.com",
+    "phone": "Contacto por email o redes",
+    "address": "Madrid, España",
+    "hours": "Atención online y citas previas para visitas"
   },
 
   "mapEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3037.234543!2d-3.703!3d40.416!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjDCsDI0JzU3LjYiTiAzwrA0MicxMC44Ilc!5e0!3m2!1ses!2ses!4v1234567890",
@@ -93,8 +93,8 @@
     "title": "Nuestra Misión",
     "heroImage": "https://images.unsplash.com/photo-1450778869180-41d0601e046e?w=800&q=80",
     "missionParagraphs": [
-      "En Refugio Amigo Animal nos dedicamos con pasión a rescatar, rehabilitar y encontrar hogares amorosos para animales en situación de abandono o maltrato.",
-      "Desde 2015, hemos dado una segunda oportunidad a más de 300 animales. Nuestro trabajo es posible gracias a un equipo de voluntarios, veterinarios y colaboradores que dedican su tiempo a esta noble causa."
+      "En la Asociación Las Miradas del Olvido nos dedicamos con pasión al rescate, rehabilitación y protección de animales abandonados, casos especiales y fauna urbana.",
+      "Trabajamos activamente en la gestión ética de poblaciones animales, concienciación y adopción responsable para dar una segunda oportunidad a quienes más lo necesitan."
     ],
     "valuesTitle": "Nuestros Valores",
     "values": [
