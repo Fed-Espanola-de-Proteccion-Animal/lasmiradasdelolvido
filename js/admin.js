@@ -17,6 +17,15 @@ let CURRENT_IMAGE_BASE64 = '';
 let CURRENT_IMAGE_NAME = '';
 let IS_DEMO_MODE = true;
 
+/** Formatea el encabezado de autorización según el tipo de token (Classic u Org Fine-Grained) */
+function getAuthHeader(token) {
+  if (!token) return '';
+  const cleanToken = token.trim();
+  if (cleanToken.startsWith('Bearer ') || cleanToken.startsWith('token ')) return cleanToken;
+  if (cleanToken.startsWith('github_pat_')) return `Bearer ${cleanToken}`;
+  return `token ${cleanToken}`;
+}
+
 // ════════════════════════════════════════════════════════════
 // INICIALIZACIÓN Y VISTAS
 // ════════════════════════════════════════════════════════════
@@ -217,7 +226,7 @@ async function handleLogin(e) {
   try {
     const res = await fetch(`https://api.github.com/repos/${repo}`, {
       headers: {
-        'Authorization': `token ${token}`,
+        'Authorization': getAuthHeader(token),
         'Accept': 'application/vnd.github.v3+json'
       }
     });
@@ -271,7 +280,7 @@ async function loadRepositoryData() {
     // 1. Cargar animales.json
     const resAnimals = await fetch(`https://api.github.com/repos/${GH_REPO}/contents/data/animales.json`, {
       headers: {
-        'Authorization': `token ${GH_TOKEN}`,
+        'Authorization': getAuthHeader(GH_TOKEN),
         'Accept': 'application/vnd.github.v3+json',
         'Cache-Control': 'no-cache'
       }
@@ -288,7 +297,7 @@ async function loadRepositoryData() {
     // 2. Cargar config.json
     const resConfig = await fetch(`https://api.github.com/repos/${GH_REPO}/contents/data/config.json`, {
       headers: {
-        'Authorization': `token ${GH_TOKEN}`,
+        'Authorization': getAuthHeader(GH_TOKEN),
         'Accept': 'application/vnd.github.v3+json',
         'Cache-Control': 'no-cache'
       }
@@ -515,7 +524,7 @@ async function handleConfigSubmit(e) {
     const res = await fetch(`https://api.github.com/repos/${GH_REPO}/contents/data/config.json`, {
       method: 'PUT',
       headers: {
-        'Authorization': `token ${GH_TOKEN}`,
+        'Authorization': getAuthHeader(GH_TOKEN),
         'Accept': 'application/vnd.github.v3+json',
         'Content-Type': 'application/json'
       },
@@ -689,7 +698,7 @@ async function handleAnimalSubmit(e) {
       const uploadRes = await fetch(`https://api.github.com/repos/${GH_REPO}/contents/img/animales/${CURRENT_IMAGE_NAME}`, {
         method: 'PUT',
         headers: {
-          'Authorization': `token ${GH_TOKEN}`,
+          'Authorization': getAuthHeader(GH_TOKEN),
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
@@ -769,7 +778,7 @@ async function commitJsonChanges(commitMessage) {
     const res = await fetch(`https://api.github.com/repos/${GH_REPO}/contents/data/animales.json`, {
       method: 'PUT',
       headers: {
-        'Authorization': `token ${GH_TOKEN}`,
+        'Authorization': getAuthHeader(GH_TOKEN),
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
