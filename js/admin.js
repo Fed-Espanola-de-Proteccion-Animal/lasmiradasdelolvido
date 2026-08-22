@@ -278,11 +278,10 @@ async function loadRepositoryData() {
   showLoading('Cargando datos desde GitHub...');
   try {
     // 1. Cargar animales.json
-    const resAnimals = await fetch(`https://api.github.com/repos/${GH_REPO}/contents/data/animales.json`, {
+    const resAnimals = await fetch(`https://api.github.com/repos/${GH_REPO}/contents/data/animales.json?t=${Date.now()}`, {
       headers: {
         'Authorization': getAuthHeader(GH_TOKEN),
-        'Accept': 'application/vnd.github.v3+json',
-        'Cache-Control': 'no-cache'
+        'Accept': 'application/vnd.github.v3+json'
       }
     });
 
@@ -295,11 +294,10 @@ async function loadRepositoryData() {
     renderTable();
 
     // 2. Cargar config.json
-    const resConfig = await fetch(`https://api.github.com/repos/${GH_REPO}/contents/data/config.json`, {
+    const resConfig = await fetch(`https://api.github.com/repos/${GH_REPO}/contents/data/config.json?t=${Date.now()}`, {
       headers: {
         'Authorization': getAuthHeader(GH_TOKEN),
-        'Accept': 'application/vnd.github.v3+json',
-        'Cache-Control': 'no-cache'
+        'Accept': 'application/vnd.github.v3+json'
       }
     });
 
